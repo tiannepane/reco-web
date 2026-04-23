@@ -1,0 +1,11 @@
+{
+  "name": "reco-web",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --open Hero.html",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

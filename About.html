@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — REcollab</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } },
+  };
+</script>
+
+<style>
+  html, body {
+    margin: 0; padding: 0; min-height: 100%; color: #0f1c2e;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:
+      radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%),
+      #f5f7fa;
+    background-attachment: fixed;
+  }
+
+  /* Liquid-glass navbar — same as homepage */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.38);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 6px 16px rgba(15, 23, 42, 0.08),
+      0 24px 48px -12px rgba(15, 23, 42, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(15, 23, 42, 0.05);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.2px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.95) 0%,
+      rgba(255,255,255,0.45) 18%,
+      rgba(255,255,255,0.08) 42%,
+      rgba(255,255,255,0.08) 58%,
+      rgba(255,255,255,0.45) 82%,
+      rgba(255,255,255,0.95) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .liquid-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.12) 18%,
+      rgba(255,255,255,0) 45%);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+  }
+  .liquid-glass > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes faqExpand {
+    from { opacity: 0; transform: translateY(-2px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="env,react">
+const { useState } = React;
+
+/* ---------- Navbar (same as homepage) ---------- */
+function Navbar() {
+  const items = [
+    { label: "Core Product", href: "Hero.html" },
+    { label: "Free Tier", href: "#" },
+    { label: "Case Studies", href: "#" },
+    { label: "About", href: "About.html" },
+  ];
+  return (
+    <div className="px-6 md:px-12 lg:px-16 pt-6 relative z-10">
+      <nav className="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between">
+        <a
+          href="Hero.html"
+          className="text-2xl font-semibold text-neutral-900 shrink-0"
+          style={{ letterSpacing: "-0.04em" }}
+          aria-label="REcollab home"
+        >
+          REcollab
+        </a>
+
+        <div className="hidden md:flex items-center gap-8">
+          {items.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="text-sm text-neutral-800 hover:text-neutral-500 transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+
+        <button className="bg-neutral-900 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-neutral-700 transition-colors">
+          Book a Demo
+        </button>
+      </nav>
+    </div>
+  );
+}
+
+/* ---------- Hero Banner ---------- */
+function AboutHero() {
+  return (
+    <section className="pt-40 pb-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-4">
+          About REcollab
+        </div>
+        <h1
+          className="text-5xl md:text-6xl font-normal text-[#0f1c2e] max-w-3xl mb-6"
+          style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
+        >
+          Built by Engineers. Trusted by Property Managers.
+        </h1>
+        <p className="text-[#0f1c2e]/60 text-base max-w-2xl leading-relaxed">
+          We are a group of engineers with deep expertise in real estate, finance, and data technology, united by a mission to bring clarity and efficiency to property management and maintenance planning.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Team Section ---------- */
+function Team() {
+  const people = [
+    { name: "Ipek Yilmaz, MSc", title: "Chief Executive Officer", seed: "ipek" },
+    { name: "C. Deyerman, MSc", title: "Chief Technology Officer", seed: "deyerman" },
+    { name: "Nastaran Dabiran, PhD", title: "Machine Learning Engineer", seed: "nastaran" },
+    { name: "Tianne Pane", title: "Product Manager", seed: "tianne" },
+    { name: "Irem Yaliniz, PhD", title: "AI and IP Advisor", seed: "irem" },
+  ];
+
+  return (
+    <section className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-3">
+          The Team
+        </div>
+        <h2
+          className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-xl mb-14"
+          style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
+        >
+          Meet the Builders
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+          {people.map((p) => (
+            <div key={p.name} className="flex flex-col items-start text-left">
+              <img
+                src={`https://api.dicebear.com/7.x/notionists/svg?seed=${p.seed}&backgroundColor=e8f0ff,dce8ff,f5f7fa&radius=16`}
+                alt={p.name}
+                className="w-24 h-24 rounded-2xl object-cover mb-4 shadow-sm border border-white/70 bg-white"
+              />
+              <div className="text-sm font-semibold text-[#0f1c2e] mb-0.5">
+                {p.name}
+              </div>
+              <div className="text-xs text-[#0f1c2e]/50 mb-2">
+                {p.title}
+              </div>
+              <a
+                href="#"
+                aria-label={`${p.name} on LinkedIn`}
+                className="text-[#0f1c2e]/30 hover:text-[#0f1c2e]/70 transition-colors"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- FAQ Section ---------- */
+function FAQ() {
+  const faqs = [
+    {
+      q: "What is a reserve fund study?",
+      a: "A long-term financial plan that predicts repair costs and checks if your building is saving enough to handle them.",
+    },
+    {
+      q: "Why do buildings need a reserve study?",
+      a: "To avoid sudden special assessments and stay compliant with local rules.",
+    },
+    {
+      q: "What is the Free Insights Tool (Free Tier)?",
+      a: "A fast scan that shows if your reserve fund is on track, what repairs are coming, and how your building compares, all in a simple shareable format.",
+    },
+    {
+      q: "Do you replace engineers?",
+      a: "No. REcollab automates the heavy lifting and calculations, while licensed engineers review and sign off when regulations require it.",
+    },
+    {
+      q: "Where does REcollab get its data?",
+      a: "From your documents, cost benchmarks, building data, and regional regulations, all combined into one clean model. We securely process and anonymize your data and never share identifiable information with third parties.",
+    },
+    {
+      q: "How accurate is the analysis?",
+      a: "It follows standard reserve fund methods and validated cost curves used across the industry. Professional review is included where compliance requires it.",
+    },
+    {
+      q: "How long does a full study take?",
+      a: "Minutes for the digital version and a few days for licensed review if your region needs it.",
+    },
+  ];
+
+  const [openIdx, setOpenIdx] = useState(0);
+
+  return (
+    <section className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-3">
+          FAQ
+        </div>
+        <h2
+          className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-xl mb-4"
+          style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
+        >
+          Frequently Asked Questions
+        </h2>
+        <p className="text-[#0f1c2e]/55 text-sm max-w-xl mb-14">
+          REcollab helps you understand and fund your building's long-term needs.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {faqs.map((item, i) => {
+            const isOpen = i === openIdx;
+            return (
+              <div
+                key={item.q}
+                onClick={() => setOpenIdx(isOpen ? -1 : i)}
+                className="bg-white/60 backdrop-blur-md border border-white/80 shadow-sm hover:shadow-md hover:border-white/90 rounded-2xl px-6 py-5 cursor-pointer transition-all duration-200 self-start"
+              >
+                <div className="text-sm font-semibold text-[#0f1c2e] flex justify-between items-center gap-4">
+                  <span>{item.q}</span>
+                  <span className="text-[#0f1c2e]/40 shrink-0">
+                    {isOpen ? (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    ) : (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    )}
+                  </span>
+                </div>
+                {isOpen && (
+                  <div
+                    className="text-sm text-[#0f1c2e]/60 leading-relaxed mt-3"
+                    style={{ animation: "faqExpand 220ms ease-out" }}
+                  >
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Bottom CTA ---------- */
+function BottomCTA() {
+  return (
+    <section className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h2
+          className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-2xl mb-4"
+          style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
+        >
+          Ready to Secure Your Building's Future?
+        </h2>
+        <p className="text-[#0f1c2e]/55 text-sm max-w-xl mb-8">
+          Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
+        </p>
+        <div className="flex gap-4 flex-wrap">
+          <button className="bg-[#0f1c2e] text-white rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-[#1a2f4a] transition-colors">
+            Start for Free
+          </button>
+          <button className="bg-white/60 backdrop-blur-md border border-white/80 text-[#0f1c2e] rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors">
+            Book a Demo
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Footer (same as homepage) ---------- */
+function Footer() {
+  const links = [
+    { label: "Product", href: "Hero.html" },
+    { label: "Free Tier", href: "#" },
+    { label: "Case Studies", href: "#" },
+    { label: "About", href: "About.html" },
+    { label: "Book a Demo", href: "#" },
+  ];
+  return (
+    <footer className="w-full bg-[#0f1c2e] py-8 px-6">
+      <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
+        <div className="flex items-center gap-2.5">
+          <img
+            src="assets/recollab-logo.png"
+            alt="REcollab"
+            className="w-6 h-6"
+            style={{ filter: "invert(1) brightness(2)" }}
+          />
+          <span className="text-white font-bold text-sm">REcollab</span>
+        </div>
+        <div className="flex gap-8 items-center flex-wrap">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              className="text-white/40 hover:text-white/80 transition-colors text-xs"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="text-white/30 text-xs">
+          © 2025 REcollab Technologies, Inc.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Navbar />
+      <AboutHero />
+      <Team />
+      <FAQ />
+      <BottomCTA />
+      <Footer />
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+
+</body>
+</html>
