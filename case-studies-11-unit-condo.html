@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>11-Unit Condo Escapes $132,000 Emergency Assessment — REcollab Case Study</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } },
+  };
+</script>
+
+<style>
+  html, body {
+    margin: 0; padding: 0; min-height: 100%; color: #0f1c2e;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:
+      radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%),
+      #f5f7fa;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.38);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 6px 16px rgba(15, 23, 42, 0.08),
+      0 24px 48px -12px rgba(15, 23, 42, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(15, 23, 42, 0.05);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.2px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.95) 0%,
+      rgba(255,255,255,0.45) 18%,
+      rgba(255,255,255,0.08) 42%,
+      rgba(255,255,255,0.08) 58%,
+      rgba(255,255,255,0.45) 82%,
+      rgba(255,255,255,0.95) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .liquid-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.12) 18%,
+      rgba(255,255,255,0) 45%);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+  }
+  .liquid-glass > * { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="env,react">
+
+function Navbar() {
+  const items = [
+    { label: "Core Product", href: "core-product.html" },
+    { label: "Free Tier", href: "#" },
+    { label: "Case Studies", href: "case-studies.html" },
+    { label: "About", href: "About.html" },
+  ];
+  return (
+    <div className="px-6 md:px-12 lg:px-16 pt-6 relative z-10">
+      <nav className="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between">
+        <a href="index.html" className="text-2xl font-semibold text-black shrink-0" style={{ letterSpacing: "-0.04em" }} aria-label="REcollab home">
+          REcollab
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {items.map((item) => (
+            <a key={item.label} href={item.href} className="text-sm text-black hover:text-black transition-colors">
+              {item.label}
+            </a>
+          ))}
+        </div>
+        <button className="bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
+          Book a Demo
+        </button>
+      </nav>
+    </div>
+  );
+}
+
+function CaseStudyHero() {
+  return (
+    <section className="pt-32 pb-12 px-6">
+      <div className="max-w-6xl mx-auto">
+        <a href="case-studies.html" className="text-sm font-medium text-[#0f1c2e] hover:text-[#D97757] transition-colors inline-block mb-10">
+          ← Back to Case Studies
+        </a>
+        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-4">
+          Case Study
+        </div>
+        <h1 className="text-4xl md:text-6xl font-normal text-[#0f1c2e] max-w-3xl mb-10" style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}>
+          11-Unit Condo Escapes $132,000 Emergency Assessment
+        </h1>
+        <div className="flex gap-10 flex-wrap">
+          <div>
+            <div className="text-3xl font-bold" style={{ color: '#D97757' }}>$0</div>
+            <div className="text-xs text-[#0f1c2e] mt-1">Emergency special assessments over 30 years</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold" style={{ color: '#D97757' }}>30-Year</div>
+            <div className="text-xs text-[#0f1c2e] mt-1">Fully funded reserve plan</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold" style={{ color: '#D97757' }}>4 Days</div>
+            <div className="text-xs text-[#0f1c2e] mt-1">From upload to signed study</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CaseStudyImage() {
+  return (
+    <section className="px-6 mb-16">
+      <div className="max-w-6xl mx-auto">
+        <div className="w-full rounded-2xl bg-black" style={{ aspectRatio: '16/7' }} />
+      </div>
+    </section>
+  );
+}
+
+function CaseStudyBody() {
+  return (
+    <section className="px-6 pb-16">
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl">
+
+          <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-3">The Problem</div>
+          <p className="text-base leading-relaxed text-[#0f1c2e] mb-3">
+            The board of an 11-unit condo corporation in Ontario had been self-managing for over a decade. Their records lived in a mix of scanned PDFs, paper invoices, and an aging spreadsheet no one fully trusted. There had been no formal reserve fund study since 2009.
+          </p>
+          <p className="text-base leading-relaxed text-[#0f1c2e] mb-12">
+            When a routine inspection flagged a failing commercial HVAC system and a roof five years past its service life, the numbers were stark: $132,000 in immediate repairs with no reserve fund to cover it. A special assessment of $12,000 per unit was the only option on the table. Four of the eleven owners had already said they couldn't pay.
+          </p>
+
+          <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-3">The Process</div>
+          <p className="text-base leading-relaxed text-[#0f1c2e] mb-3">
+            A board member uploaded everything they had — old contractor invoices, the 2009 reserve study, maintenance logs, photos — to REcollab in a single afternoon. REcollab's ingestion engine processed the mixed file types, reconciled gaps and inconsistencies in the historical data, and built a complete component inventory for the building.
+          </p>
+          <p className="text-base leading-relaxed text-[#0f1c2e] mb-3">
+            The platform cross-referenced the building's components against regional cost benchmarks and identified a green financing pathway for the HVAC replacement. REcollab's contractor marketplace matched the board with three verified vendors and generated a competitive RFP automatically, reducing the total HVAC project cost by $18,000.
+          </p>
+          <p className="text-base leading-relaxed text-[#0f1c2e] mb-12">
+            The resulting 30-year funding model phased contribution increases across six years — eliminating the immediate shock while keeping the fund fully solvent at every point in the plan.
+          </p>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PullQuote() {
+  return (
+    <section className="px-6 pb-16">
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl">
+          <div className="bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl px-10 py-12">
+            <div className="text-7xl font-bold mb-3" style={{ color: '#D97757', letterSpacing: '-0.04em' }}>$0</div>
+            <div className="text-xl font-normal text-[#0f1c2e] max-w-sm" style={{ letterSpacing: '-0.01em', lineHeight: 1.4 }}>
+              emergency special assessments over the full 30-year plan
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Outcomes() {
+  const items = [
+    { stat: "$0", label: "Special assessments — zero emergency levies across the 30-year plan" },
+    { stat: "$18K", label: "Savings on HVAC replacement through green loan qualification and competitive contractor bidding" },
+    { stat: "$85/mo", label: "Per-unit contribution increase, phased over 6 years instead of a one-time $12,000 levy" },
+    { stat: "4 Days", label: "From document upload to a signed, compliance-ready reserve fund study" },
+  ];
+  return (
+    <section className="px-6 pb-24">
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl">
+          <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-8">The Outcome</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {items.map((item) => (
+              <div key={item.stat} className="bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl px-6 py-5">
+                <div className="text-2xl font-bold mb-2" style={{ color: '#D97757' }}>{item.stat}</div>
+                <div className="text-sm text-[#0f1c2e] leading-relaxed">{item.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BottomCTA() {
+  return (
+    <section className="py-24 px-6" style={{ background: 'radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 50%), radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%), #f5f7fa' }}>
+      <div className="max-w-6xl mx-auto">
+        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-4">Get Started</div>
+        <h2 className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-2xl mb-4" style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}>
+          Start planning smarter.
+        </h2>
+        <p className="text-[#0f1c2e] text-sm max-w-xl mb-8">
+          Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
+        </p>
+        <div className="flex gap-4 flex-wrap">
+          <button className="bg-[#0f1c2e] text-white rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-[#1a2f4a] transition-colors">
+            Start for Free
+          </button>
+          <button className="bg-white/60 backdrop-blur-md border border-white/80 text-[#0f1c2e] rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors">
+            Book a Demo
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  const links = [
+    { label: "Product", href: "index.html" },
+    { label: "Free Tier", href: "#" },
+    { label: "Case Studies", href: "case-studies.html" },
+    { label: "About", href: "About.html" },
+    { label: "Book a Demo", href: "#" },
+  ];
+  return (
+    <footer className="w-full bg-[#0f1c2e] py-8 px-6">
+      <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
+        <div className="flex items-center gap-2.5">
+          <img src="assets/recollab-logo.png" alt="REcollab" className="w-6 h-6" style={{ filter: "invert(1) brightness(2)" }} />
+          <span className="text-white font-bold text-sm">REcollab</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:flex-nowrap md:gap-8">
+          {links.map((l) => (
+            <a key={l.label} href={l.href} className="text-white hover:text-white/80 transition-colors text-xs">
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="text-white text-xs">
+          © 2025 REcollab Technologies, Inc.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Navbar />
+      <CaseStudyHero />
+      <CaseStudyImage />
+      <CaseStudyBody />
+      <PullQuote />
+      <Outcomes />
+      <BottomCTA />
+      <Footer />
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+
+</body>
+</html>

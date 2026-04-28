@@ -29,6 +29,7 @@
       radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%),
       #f5f7fa;
     background-attachment: fixed;
+    overflow-x: hidden;
   }
 
   /* Liquid-glass navbar — same as homepage */
@@ -84,10 +85,6 @@
     z-index: 1;
   }
 
-  @keyframes faqExpand {
-    from { opacity: 0; transform: translateY(-2px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
 </style>
 </head>
 <body>
@@ -104,9 +101,9 @@ const { useState } = React;
 /* ---------- Navbar (same as homepage) ---------- */
 function Navbar() {
   const items = [
-    { label: "Core Product", href: "Hero.html" },
+    { label: "Core Product", href: "core-product.html" },
     { label: "Free Tier", href: "#" },
-    { label: "Case Studies", href: "#" },
+    { label: "Case Studies", href: "case-studies.html" },
     { label: "About", href: "About.html" },
   ];
   return (
@@ -114,7 +111,7 @@ function Navbar() {
       <nav className="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between">
         <a
           href="Hero.html"
-          className="text-2xl font-semibold text-neutral-900 shrink-0"
+          className="text-2xl font-semibold text-black shrink-0"
           style={{ letterSpacing: "-0.04em" }}
           aria-label="REcollab home"
         >
@@ -126,14 +123,14 @@ function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className="text-sm text-neutral-800 hover:text-neutral-500 transition-colors"
+              className="text-sm text-black hover:text-black transition-colors"
             >
               {item.label}
             </a>
           ))}
         </div>
 
-        <button className="bg-neutral-900 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-neutral-700 transition-colors">
+        <button className="bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
           Book a Demo
         </button>
       </nav>
@@ -146,7 +143,7 @@ function AboutHero() {
   return (
     <section className="pt-40 pb-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-4">
+        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-4">
           About REcollab
         </div>
         <h1
@@ -155,7 +152,7 @@ function AboutHero() {
         >
           Built by Engineers. Trusted by Property Managers.
         </h1>
-        <p className="text-[#0f1c2e]/60 text-base max-w-2xl leading-relaxed">
+        <p className="text-[#0f1c2e] text-base max-w-2xl leading-relaxed">
           We are a group of engineers with deep expertise in real estate, finance, and data technology, united by a mission to bring clarity and efficiency to property management and maintenance planning.
         </p>
       </div>
@@ -176,7 +173,7 @@ function Team() {
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-3">
+        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-3">
           The Team
         </div>
         <h2
@@ -197,13 +194,13 @@ function Team() {
               <div className="text-sm font-semibold text-[#0f1c2e] mb-0.5">
                 {p.name}
               </div>
-              <div className="text-xs text-[#0f1c2e]/50 mb-2">
+              <div className="text-xs text-[#0f1c2e] mb-2">
                 {p.title}
               </div>
               <a
                 href="#"
                 aria-label={`${p.name} on LinkedIn`}
-                className="text-[#0f1c2e]/30 hover:text-[#0f1c2e]/70 transition-colors"
+                className="text-[#0f1c2e] hover:text-[#0f1c2e] transition-colors"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -211,98 +208,6 @@ function Team() {
               </a>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- FAQ Section ---------- */
-function FAQ() {
-  const faqs = [
-    {
-      q: "What is a reserve fund study?",
-      a: "A long-term financial plan that predicts repair costs and checks if your building is saving enough to handle them.",
-    },
-    {
-      q: "Why do buildings need a reserve study?",
-      a: "To avoid sudden special assessments and stay compliant with local rules.",
-    },
-    {
-      q: "What is the Free Insights Tool (Free Tier)?",
-      a: "A fast scan that shows if your reserve fund is on track, what repairs are coming, and how your building compares, all in a simple shareable format.",
-    },
-    {
-      q: "Do you replace engineers?",
-      a: "No. REcollab automates the heavy lifting and calculations, while licensed engineers review and sign off when regulations require it.",
-    },
-    {
-      q: "Where does REcollab get its data?",
-      a: "From your documents, cost benchmarks, building data, and regional regulations, all combined into one clean model. We securely process and anonymize your data and never share identifiable information with third parties.",
-    },
-    {
-      q: "How accurate is the analysis?",
-      a: "It follows standard reserve fund methods and validated cost curves used across the industry. Professional review is included where compliance requires it.",
-    },
-    {
-      q: "How long does a full study take?",
-      a: "Minutes for the digital version and a few days for licensed review if your region needs it.",
-    },
-  ];
-
-  const [openIdx, setOpenIdx] = useState(0);
-
-  return (
-    <section className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-3">
-          FAQ
-        </div>
-        <h2
-          className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-xl mb-4"
-          style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
-        >
-          Frequently Asked Questions
-        </h2>
-        <p className="text-[#0f1c2e]/55 text-sm max-w-xl mb-14">
-          REcollab helps you understand and fund your building's long-term needs.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {faqs.map((item, i) => {
-            const isOpen = i === openIdx;
-            return (
-              <div
-                key={item.q}
-                onClick={() => setOpenIdx(isOpen ? -1 : i)}
-                className="bg-white/60 backdrop-blur-md border border-white/80 shadow-sm hover:shadow-md hover:border-white/90 rounded-2xl px-6 py-5 cursor-pointer transition-all duration-200 self-start"
-              >
-                <div className="text-sm font-semibold text-[#0f1c2e] flex justify-between items-center gap-4">
-                  <span>{item.q}</span>
-                  <span className="text-[#0f1c2e]/40 shrink-0">
-                    {isOpen ? (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                      </svg>
-                    ) : (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                      </svg>
-                    )}
-                  </span>
-                </div>
-                {isOpen && (
-                  <div
-                    className="text-sm text-[#0f1c2e]/60 leading-relaxed mt-3"
-                    style={{ animation: "faqExpand 220ms ease-out" }}
-                  >
-                    {item.a}
-                  </div>
-                )}
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>
@@ -320,7 +225,7 @@ function BottomCTA() {
         >
           Ready to Secure Your Building's Future?
         </h2>
-        <p className="text-[#0f1c2e]/55 text-sm max-w-xl mb-8">
+        <p className="text-[#0f1c2e] text-sm max-w-xl mb-8">
           Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -341,7 +246,7 @@ function Footer() {
   const links = [
     { label: "Product", href: "Hero.html" },
     { label: "Free Tier", href: "#" },
-    { label: "Case Studies", href: "#" },
+    { label: "Case Studies", href: "case-studies.html" },
     { label: "About", href: "About.html" },
     { label: "Book a Demo", href: "#" },
   ];
@@ -362,13 +267,13 @@ function Footer() {
             <a
               key={l.label}
               href={l.href}
-              className="text-white/40 hover:text-white/80 transition-colors text-xs"
+              className="text-white/90 hover:text-white/80 transition-colors text-xs"
             >
               {l.label}
             </a>
           ))}
         </div>
-        <div className="text-white/30 text-xs">
+        <div className="text-white/80 text-xs">
           © 2025 REcollab Technologies, Inc.
         </div>
       </div>
@@ -382,7 +287,6 @@ function App() {
       <Navbar />
       <AboutHero />
       <Team />
-      <FAQ />
       <BottomCTA />
       <Footer />
     </>

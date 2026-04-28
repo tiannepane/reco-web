@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>REcollab — Shaping tomorrow with vision and action.</title>
+<title>REcollab. Shaping tomorrow with vision and action.</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +38,7 @@
       radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%),
       #f5f7fa;
     background-attachment: fixed;
+    overflow-x: hidden;
   }
 
   /* Aurora background — soft animated blue sheets, scoped to the hero */
@@ -160,6 +161,11 @@
     position: relative;
     z-index: 1;
   }
+
+  @keyframes faqExpand {
+    from { opacity: 0; transform: translateY(-2px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
@@ -238,11 +244,11 @@ function AnimatedHeading({ text, className = "", style = {}, initialDelay = 200,
 /* ---------- Navbar ---------- */
 function Navbar({ activePage = "" }) {
   return (
-    <div className="px-6 md:px-12 lg:px-16 pt-6 relative z-10">
-      <nav className="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between">
+    <div className="sticky top-0 z-50 w-full liquid-glass" style={{ borderRadius: 0 }}>
+      <div className="px-6 md:px-12 lg:px-16 py-3 flex items-center justify-between">
         <a
-          href="Hero.html"
-          className="text-2xl font-semibold text-neutral-900 shrink-0"
+          href="index.html"
+          className="text-2xl font-semibold text-black shrink-0"
           style={{ letterSpacing: "-0.04em" }}
           aria-label="REcollab home"
         >
@@ -253,19 +259,19 @@ function Navbar({ activePage = "" }) {
           {["Core Product", "Free Tier", "Case Studies", "About"].map((item) => (
             <a
               key={item}
-              href={item === "About" ? "About.html" : "#"}
+              href={item === "Core Product" ? "core-product.html" : item === "About" ? "About.html" : item === "Case Studies" ? "case-studies.html" : "#"}
               className="text-sm transition-colors"
-              style={{ color: activePage === item ? "#0f1c2e" : "rgba(15,28,46,0.5)" }}
+              style={{ color: "#0f1c2e" }}
             >
               {item}
             </a>
           ))}
         </div>
 
-        <button className="bg-neutral-900 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-neutral-700 transition-colors">
+        <button className="bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
           Book a Demo
         </button>
-      </nav>
+      </div>
     </div>
   );
 }
@@ -352,43 +358,31 @@ function CyclingWord({ words, interval = 2000 }) {
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative w-full h-screen overflow-hidden text-neutral-900 border-b border-[#0f1c2e]/5">
+    <section className="relative w-full h-screen overflow-hidden text-black border-b border-[#0f1c2e]/5">
       <div className="hero-bg" aria-hidden="true"></div>
 
       <div className="relative z-10 flex flex-col h-full">
-        <Navbar />
-
         <div className="px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-end pb-12 lg:pb-16">
           <div className="max-w-3xl">
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-4"
+                className="text-xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-4"
                 style={{ letterSpacing: "-0.04em", lineHeight: 1.1 }}
               >
-                <span style={{ display: "block" }}>The Financial Operating</span>
-                <span style={{ display: "block" }}>
-                  System for{" "}
-                  <CyclingWord
-                    words={[
-                      "Property Managers",
-                      "Asset Managers",
-                      "Condo Boards",
-                    ]}
-                  />
-                </span>
+                The AI platform for Building Financial Intelligence.
               </h1>
 
               <FadeIn delay={800} duration={1000}>
-                <p className="text-base md:text-lg text-neutral-700 mb-5 max-w-xl">
-                  Secure your building's future through intelligence. Upload any file format and REcollab plans your maintenance and funding journey.
+                <p className="text-base md:text-lg text-[#0f1c2e] mb-5 max-w-xl">
+                  REcollab transforms your building data into actionable intelligence — automating reserve studies, compliance audits, insurance optimization, and board reporting — so property managers, asset managers, and condo boards can make faster, smarter financial decisions.
                 </p>
               </FadeIn>
 
               <FadeIn delay={1200} duration={1000}>
                 <div className="flex flex-wrap gap-4">
-                  <button className="bg-neutral-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-neutral-700 transition-colors">
+                  <button className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-black transition-colors">
                     Start for Free
                   </button>
-                  <button className="liquid-glass text-neutral-900 px-8 py-3 rounded-lg font-medium hover:bg-white transition-colors">
+                  <button className="liquid-glass text-black px-8 py-3 rounded-lg font-medium hover:bg-white transition-colors">
                     Book a Demo
                   </button>
                 </div>
@@ -407,12 +401,12 @@ function DemoSection() {
       <div className="hero-bg hero-bg--soft" aria-hidden="true"></div>
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
         <div>
-          <div className="text-[#0f1c2e]/50 tracking-[0.2em] text-xs font-semibold uppercase mb-4">
+          <div className="text-[#0f1c2e] text-3xl md:text-4xl font-normal mb-4" style={{ letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             See It In Action
           </div>
           <h2
-            className="text-xl md:text-2xl font-medium"
-            style={{ color: "#0f1c2e", letterSpacing: "-0.01em", lineHeight: 1.3 }}
+            className="text-base font-light"
+            style={{ color: "#0f1c2e", letterSpacing: "-0.01em", lineHeight: 1.6 }}
           >
             Watch how property managers turn a stack of documents into a complete AI-powered reserve plan in under 90 seconds.
           </h2>
@@ -434,136 +428,102 @@ function DemoSection() {
 
 /* ---------- Use Cases Section ---------- */
 function UseCases() {
-  const iconProps = {
-    width: 20,
-    height: 20,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "#0f1c2e",
-    strokeWidth: 1.75,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    style: { opacity: 0.7 },
-  };
-
-  const ShieldCheck = (
-    <svg {...iconProps}>
-      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
-      <path d="m9 12 2 2 4-4"/>
-    </svg>
-  );
-  const BarChart3 = (
-    <svg {...iconProps}>
-      <path d="M3 3v18h18"/>
-      <path d="M18 17V9"/>
-      <path d="M13 17V5"/>
-      <path d="M8 17v-3"/>
-    </svg>
-  );
-  const Users = (
-    <svg {...iconProps}>
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-    </svg>
-  );
-  const TrendingUp = (
-    <svg {...iconProps}>
-      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-      <polyline points="16 7 22 7 22 13"/>
-    </svg>
-  );
-
-  const items = [
+  const rows = [
     {
-      icon: ShieldCheck,
-      stat: "100%",
-      statLabel: "compliance accuracy",
-      title: "Automated Risk Audits",
-      description:
-        "Automatically scan building data to identify compliance gaps, expired insurance, and maintenance risks. Avoid missed deadlines and penalties.",
+      category: 'RESERVE FUND REPORTS',
+      today: "Static PDFs, outdated the moment they're printed",
+      stat: '60%',
+      recollab: 'savings on consulting costs. Living dashboard with real-time projections.',
     },
     {
-      icon: BarChart3,
-      stat: "3x",
-      statLabel: "faster board approval",
-      title: "Reserve Planning and Compliance",
-      description:
-        "Replace static PDFs with a living financial model. Instantly simulate scenarios to give boards a transparent view of capital health.",
+      category: 'COMPLIANCE & RISK',
+      today: 'Manual checks, missed deadlines, expired insurance slips through',
+      stat: '100%',
+      recollab: 'compliance accuracy. Automated scans catch every gap before it becomes a penalty.',
     },
     {
-      icon: Users,
-      stat: "500+",
-      statLabel: "verified contractors",
-      title: "Seamless Project Procurement",
-      description:
-        "Match capital projects with verified contractors and automatically qualify for green loans. Transparent RFP process and better price guarantee.",
+      category: 'BOARD APPROVALS',
+      today: 'Difficult conversations about massive immediate fee hikes',
+      stat: '3x',
+      recollab: 'faster board approval. Incremental contribution paths boards can visualize themselves.',
     },
     {
-      icon: TrendingUp,
-      stat: "87%",
-      statLabel: "insurance premium decrease",
-      title: "Insurance and Value Growth",
-      description:
-        "Use verified maintenance logs to negotiate lower insurance premiums, unlock better loan terms, and directly increase property resale value.",
+      category: 'CONTRACTOR PROCUREMENT',
+      today: 'Informal process, no price guarantee, no green loan qualification',
+      stat: '500+',
+      recollab: 'verified contractors. Automated RFP and competitive bids in one workflow.',
+    },
+    {
+      category: 'INSURANCE PREMIUMS',
+      today: 'No proof of maintenance history to negotiate with',
+      stat: '87%',
+      recollab: 'insurance premium decrease. Verified logs unlock preferred rates automatically.',
     },
   ];
 
   return (
     <section className="bg-transparent w-full py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-start justify-between mb-14 gap-6">
-          <div>
-            <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-2">
-              Use Cases
-            </div>
-            <h2
-              className="text-3xl md:text-4xl font-normal max-w-md"
-              style={{ color: "#0f1c2e", letterSpacing: "-0.025em", lineHeight: 1.15 }}
-            >
-              Built for Every Stage of Your Building's Life
-            </h2>
-            <p className="text-[#0f1c2e]/55 text-sm mt-3 max-w-sm">
-              Moving beyond the static reserve fund study. REcollab digitizes your asset management to save time and reduce costs.
-            </p>
-          </div>
-          <a
-            href="#"
-            className="text-sm text-[#0f1c2e]/50 hover:text-[#0f1c2e] transition-colors mt-2 shrink-0"
-          >
-            Explore All Features →
-          </a>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-start">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-          {items.map((item, i) => (
-            <div
-              key={i}
-              className="flex items-start gap-5 pb-10 border-b border-[#0f1c2e]/[0.08]"
+          {/* Left: heading */}
+          <div className="md:col-span-2">
+            <h2
+              className="text-3xl md:text-4xl font-normal text-[#0f1c2e]"
+              style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}
             >
-              <div
-                className="shrink-0 rounded-lg p-2.5 flex items-center justify-center"
-                style={{ background: "rgba(15, 28, 46, 0.05)" }}
-              >
-                {item.icon}
+              The Old Way vs. REcollab.
+            </h2>
+          </div>
+
+          {/* Right: comparison table */}
+          <div className="md:col-span-3">
+
+            {/* Column headers — desktop only */}
+            <div
+              className="hidden md:grid md:grid-cols-2 gap-8 pb-3"
+              style={{ borderBottom: '1px solid rgba(15,28,46,0.1)' }}
+            >
+              <div className="text-xs font-medium tracking-widest uppercase text-[#0f1c2e]">
+                Old Way
               </div>
-              <div className="flex flex-col">
-                <div className="text-xl font-bold text-[#c9a84c] mb-0.5">
-                  {item.stat}
-                </div>
-                <div className="text-xs text-[#0f1c2e]/40 mb-2">
-                  {item.statLabel}
-                </div>
-                <div className="text-sm font-semibold text-[#0f1c2e] mb-1.5">
-                  {item.title}
-                </div>
-                <div className="text-xs text-[#0f1c2e]/55 leading-relaxed">
-                  {item.description}
-                </div>
+              <div className="text-xs font-medium tracking-widest uppercase text-[#0f1c2e]">
+                With REcollab
               </div>
             </div>
-          ))}
+
+            {/* Rows */}
+            {rows.map((row, i) => (
+              <div
+                key={i}
+                className="py-7"
+                style={{ borderTop: '1px solid rgba(15,28,46,0.1)' }}
+              >
+                <div className="text-[10px] font-semibold tracking-[0.16em] uppercase mb-4 text-[#0f1c2e]">
+                  {row.category}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">
+                  <div>
+                    <div className="text-[10px] font-medium tracking-widest uppercase mb-2 md:hidden text-[#0f1c2e]">
+                      Old Way
+                    </div>
+                    <p className="text-sm font-light leading-relaxed text-[#0f1c2e]">
+                      {row.today}
+                    </p>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-medium tracking-widest uppercase mb-2 md:hidden text-[#0f1c2e]">
+                      With REcollab
+                    </div>
+                    <p className="text-sm font-semibold leading-relaxed text-[#0f1c2e]">
+                      <span style={{ color: '#D97757' }}>{row.stat}</span>{' '}{row.recollab}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+          </div>
         </div>
       </div>
     </section>
@@ -676,23 +636,33 @@ function HowItWorks() {
   ];
 
   return (
-    <section className="bg-transparent w-full py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div>
-          <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase">
-            How It Works
-          </div>
-          <h2
-            className="text-3xl md:text-4xl font-normal text-[#0f1c2e] max-w-lg mt-4 mb-16"
-            style={{ letterSpacing: "-0.025em", lineHeight: 1.15 }}
-          >
-            From Documents to Intelligence in Minutes.
-          </h2>
+    <section className="bg-transparent w-full py-24">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase">
+          How It Works
         </div>
+        <h2
+          className="text-3xl md:text-4xl font-normal text-[#0f1c2e] max-w-lg mt-4 mb-10"
+          style={{ letterSpacing: "-0.025em", lineHeight: 1.15 }}
+        >
+          From Documents to Intelligence in Minutes.
+        </h2>
+      </div>
 
-        <div className="bg-white/50 backdrop-blur-xl border border-white/80 shadow-lg rounded-2xl overflow-hidden">
+      <div className="flex items-center px-4 gap-3 md:px-12 md:gap-6">
+        <button
+          onClick={goPrev}
+          aria-label="Previous step"
+          className="rounded-full w-10 h-10 bg-[#0f1c2e] flex items-center justify-center hover:bg-[#1a2f4a] transition-colors shadow-md shrink-0"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+
+        <div className="flex-1 bg-white/50 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
           <div className="bg-white/40 backdrop-blur border-b border-white/60 px-8 py-4 flex items-center justify-between">
-            <div className="text-xs font-mono text-[#0f1c2e]/30">
+            <div className="text-xs font-mono text-[#0f1c2e]">
               {current.num} / 06
             </div>
             <div className="text-sm font-semibold text-[#0f1c2e] tracking-tight text-center flex-1 px-4 truncate">
@@ -708,7 +678,7 @@ function HowItWorks() {
           <div
             key={active}
             className="grid grid-cols-1 md:grid-cols-5 gap-0 items-stretch"
-            style={{ animation: "howFadeIn 300ms ease-in-out", minHeight: "18rem" }}
+            style={{ animation: "howFadeIn 300ms ease-in-out", minHeight: "28rem" }}
           >
             <div className="md:col-span-3 bg-transparent p-10 flex items-center justify-center">
               <div className="rounded-2xl bg-white/40 border border-white/60 p-10 flex items-center justify-center">
@@ -717,14 +687,14 @@ function HowItWorks() {
             </div>
 
             <div className="md:col-span-2 bg-white/20 border-l border-white/40 p-8 flex flex-col justify-between gap-6">
-              <div className="text-sm text-[#0f1c2e]/65 leading-relaxed">
+              <div className="text-sm text-[#0f1c2e] leading-relaxed">
                 {current.description}
               </div>
               <div className="flex flex-wrap gap-2">
                 {current.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-white/60 backdrop-blur border border-white/70 rounded-full px-3 py-1 text-xs text-[#0f1c2e]/60"
+                    className="bg-white/60 backdrop-blur border border-white/70 rounded-full px-3 py-1 text-xs text-[#0f1c2e]"
                   >
                     {tag}
                   </span>
@@ -734,41 +704,106 @@ function HowItWorks() {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center gap-4">
-          <button
-            onClick={goPrev}
-            aria-label="Previous step"
-            className="rounded-full w-9 h-9 border border-[#0f1c2e]/15 bg-white/60 backdrop-blur flex items-center justify-center hover:bg-white/90 transition-all shrink-0"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeOpacity="0.5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
-          </button>
+        <button
+          onClick={goNext}
+          aria-label="Next step"
+          className="rounded-full w-10 h-10 bg-[#0f1c2e] flex items-center justify-center hover:bg-[#1a2f4a] transition-colors shadow-md shrink-0"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+  );
+}
 
-          <div className="flex-1 h-0.5 rounded-full relative overflow-hidden" style={{ background: "rgba(15, 28, 46, 0.08)" }}>
-            <div
-              key={tick}
-              className="absolute left-0 top-0 h-full rounded-full"
-              style={{
-                background: "#c9a84c",
-                animation: "howProgress 8000ms linear forwards",
-              }}
-            ></div>
-          </div>
+/* ---------- FAQ Section ---------- */
+function FAQ() {
+  const faqs = [
+    {
+      q: "What is a reserve fund study?",
+      a: "A long-term financial plan that predicts repair costs and checks if your building is saving enough to handle them.",
+    },
+    {
+      q: "Why do buildings need a reserve study?",
+      a: "To avoid sudden special assessments and stay compliant with local rules.",
+    },
+    {
+      q: "What is the Free Insights Tool (Free Tier)?",
+      a: "A fast scan that shows if your reserve fund is on track, what repairs are coming, and how your building compares, all in a simple shareable format.",
+    },
+    {
+      q: "Do you replace engineers?",
+      a: "No. REcollab automates the heavy lifting and calculations, while licensed engineers review and sign off when regulations require it.",
+    },
+    {
+      q: "Where does REcollab get its data?",
+      a: "From your documents, cost benchmarks, building data, and regional regulations, all combined into one clean model. We securely process and anonymize your data and never share identifiable information with third parties.",
+    },
+    {
+      q: "How accurate is the analysis?",
+      a: "It follows standard reserve fund methods and validated cost curves used across the industry. Professional review is included where compliance requires it.",
+    },
+    {
+      q: "How long does a full study take?",
+      a: "Minutes for the digital version and a few days for licensed review if your region needs it.",
+    },
+  ];
 
-          <button
-            onClick={goNext}
-            aria-label="Next step"
-            className="rounded-full w-9 h-9 border border-[#0f1c2e]/15 bg-white/60 backdrop-blur flex items-center justify-center hover:bg-white/90 transition-all shrink-0"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeOpacity="0.5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6"/>
-            </svg>
-          </button>
+  const [openIdx, setOpenIdx] = useState(0);
 
-          <div className="text-xs text-[#0f1c2e]/30 shrink-0">
-            {current.num} / 06
-          </div>
+  return (
+    <section className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-3">
+          FAQ
+        </div>
+        <h2
+          className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-xl mb-4"
+          style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
+        >
+          Frequently Asked Questions
+        </h2>
+        <p className="text-[#0f1c2e] text-sm max-w-xl mb-14">
+          REcollab helps you understand and fund your building's long-term needs.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {faqs.map((item, i) => {
+            const isOpen = i === openIdx;
+            return (
+              <div
+                key={item.q}
+                onClick={() => setOpenIdx(isOpen ? -1 : i)}
+                className="bg-white/60 backdrop-blur-md border border-white/80 shadow-sm hover:shadow-md hover:border-white/90 rounded-2xl px-6 py-5 cursor-pointer transition-all duration-200 self-start"
+              >
+                <div className="text-sm font-semibold text-[#0f1c2e] flex justify-between items-center gap-4">
+                  <span>{item.q}</span>
+                  <span className="text-[#0f1c2e] shrink-0">
+                    {isOpen ? (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    ) : (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    )}
+                  </span>
+                </div>
+                {isOpen && (
+                  <div
+                    className="text-sm text-[#0f1c2e] leading-relaxed mt-3"
+                    style={{ animation: "faqExpand 220ms ease-out" }}
+                  >
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -792,7 +827,7 @@ function FinalCTA() {
       }}
     >
       <div className="max-w-6xl mx-auto flex flex-col items-start text-left">
-        <div className="text-[#0f1c2e]/40 tracking-widest text-xs font-medium uppercase mb-4">
+        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-4">
           Get Started
         </div>
         <h2
@@ -801,7 +836,7 @@ function FinalCTA() {
         >
           Secure Your Building's Future Through Intelligence.
         </h2>
-        <p className="text-[#0f1c2e]/55 text-base mb-10 max-w-lg">
+        <p className="text-[#0f1c2e] text-base mb-10 max-w-lg">
           Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -815,8 +850,8 @@ function FinalCTA() {
         <div className="flex gap-12 mt-12 flex-wrap">
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col items-start">
-              <div className="text-2xl font-bold text-[#c9a84c]">{s.num}</div>
-              <div className="text-xs text-[#0f1c2e]/45 mt-1">{s.label}</div>
+              <div className="text-2xl font-bold text-[#D97757]">{s.num}</div>
+              <div className="text-xs text-[#0f1c2e] mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -840,18 +875,18 @@ function Footer() {
           />
           <span className="text-white font-bold text-sm">REcollab</span>
         </div>
-        <div className="flex gap-8 items-center">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:flex-nowrap md:gap-8">
           {links.map((l) => (
             <a
               key={l}
               href={l === "About" ? "About.html" : "#"}
-              className="text-white/40 hover:text-white/80 transition-colors text-xs"
+              className="text-white hover:text-white/80 transition-colors text-xs"
             >
               {l}
             </a>
           ))}
         </div>
-        <div className="text-white/30 text-xs">
+        <div className="text-white text-xs">
           © 2025 REcollab Technologies, Inc.
         </div>
       </div>
@@ -859,14 +894,199 @@ function Footer() {
   );
 }
 
+/* ---------- Core Product ---------- */
+function CoreProduct() {
+  const [slideIdx, setSlideIdx] = useState(0);
+  const TOTAL = 4;
+
+  useEffect(() => {
+    const id = setInterval(() => setSlideIdx(i => (i + 1) % TOTAL), 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  const prev = () => setSlideIdx(i => (i - 1 + TOTAL) % TOTAL);
+  const next = () => setSlideIdx(i => (i + 1) % TOTAL);
+
+  return (
+    <section className="bg-transparent w-full py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-20 items-center">
+
+          {/* Left: label + title + image slider */}
+          <div>
+            <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-3">
+              Our Core Product
+            </div>
+            <h2
+              className="text-4xl md:text-5xl font-normal text-[#0f1c2e] mb-8"
+              style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
+            >
+              RECOStudy™
+            </h2>
+
+            {/* Image slider placeholder */}
+            <div className="relative liquid-glass rounded-2xl overflow-hidden" style={{ aspectRatio: '16/10' }}>
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 select-none">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.12 }}>
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <circle cx="9" cy="9" r="2"/>
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                </svg>
+                <span style={{ color: 'rgba(15,28,46,0.22)', fontSize: 10, letterSpacing: '0.14em', fontWeight: 500, textTransform: 'uppercase' }}>
+                  Slide {slideIdx + 1} of {TOTAL}
+                </span>
+              </div>
+
+              <button onClick={prev} aria-label="Previous slide"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/60 backdrop-blur border border-white/80 flex items-center justify-center hover:bg-white/90 transition-colors"
+                style={{ zIndex: 2 }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button onClick={next} aria-label="Next slide"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/60 backdrop-blur border border-white/80 flex items-center justify-center hover:bg-white/90 transition-colors"
+                style={{ zIndex: 2 }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+
+              <div className="absolute bottom-5 left-0 right-0 flex justify-center gap-1.5" style={{ zIndex: 2 }}>
+                {Array.from({ length: TOTAL }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSlideIdx(i)}
+                    aria-label={`Slide ${i + 1}`}
+                    style={{
+                      width: i === slideIdx ? 18 : 6,
+                      height: 6,
+                      borderRadius: 999,
+                      background: i === slideIdx ? '#0f1c2e' : 'rgba(15,28,46,0.2)',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: 0,
+                      transition: 'width 300ms ease, background 300ms ease',
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: copy + CTA */}
+          <div className="flex flex-col justify-center">
+            <p className="text-[#0f1c2e] text-base leading-relaxed mb-8">
+              Empower property managers and boards to make smarter decisions with more than just static reports—gain the real-time financial intelligence and digital tools needed to focus on long-term asset health.
+            </p>
+
+            <div style={{ height: 1, background: 'rgba(15,28,46,0.1)', marginBottom: '2rem' }} />
+
+            <div className="mb-10">
+              <div className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#0f1c2e] mb-3">
+                End-to-End Connectivity
+              </div>
+              <p className="text-sm font-light leading-relaxed text-[#0f1c2e]">
+                Seamlessly link every stage of the building lifecycle—from initial audit and capital planning to securing traditional and green funding, through to project management, procurement, and insurance placement.
+              </p>
+            </div>
+
+            <a
+              href="core-product.html"
+              className="inline-flex items-center gap-2 bg-[#0f1c2e] text-white rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-[#1a2f4a] transition-colors self-start"
+            >
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- About Snippet ---------- */
+function AboutSnippet() {
+  const people = [
+    {
+      name: "Ipek Yilmaz, MSc",
+      title: "Chief Executive Officer",
+      seed: "ipek",
+    },
+    {
+      name: "C. Deyerman, MSc",
+      title: "Chief Technology Officer",
+      seed: "deyerman",
+    },
+  ];
+
+  return (
+    <section className="bg-transparent w-full py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          {/* Left: text block */}
+          <div className="flex flex-col justify-start">
+            <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-4">
+              About REcollab
+            </div>
+            <h2
+              className="text-3xl md:text-4xl font-normal text-[#0f1c2e] mb-6"
+              style={{ letterSpacing: "-0.03em", lineHeight: 1.1 }}
+            >
+              Built by Engineers. Trusted by Property Managers.
+            </h2>
+            <p className="text-[#0f1c2e] text-sm font-light leading-relaxed mb-10 max-w-md">
+              We are a group of engineers with deep expertise in real estate, finance, and data technology, united by a mission to bring clarity and efficiency to property management and maintenance planning.
+            </p>
+            <a
+              href="About.html"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#0f1c2e] hover:opacity-70 transition-opacity self-start"
+            >
+              Meet the rest of the team
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Right: two person cards stacked */}
+          <div className="flex flex-col gap-4">
+            {people.map((p) => (
+              <div
+                key={p.name}
+                className="bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl px-6 py-5 flex items-center gap-5"
+              >
+                <img
+                  src={`https://api.dicebear.com/7.x/notionists/svg?seed=${p.seed}&backgroundColor=e8f0ff,dce8ff,f5f7fa&radius=16`}
+                  alt={p.name}
+                  className="w-16 h-16 rounded-xl object-cover shrink-0 border border-white/70 bg-white"
+                />
+                <div>
+                  <div className="text-sm font-semibold text-[#0f1c2e] mb-0.5">{p.name}</div>
+                  <div className="text-xs text-[#0f1c2e] font-light">{p.title}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function App() {
   return (
     <>
+      <Navbar />
       <Hero />
       <DemoSection />
       <UseCases />
       <HowItWorks />
+      <CoreProduct />
+      <AboutSnippet />
       <FinalCTA />
+      <FAQ />
       <Footer />
     </>
   );
