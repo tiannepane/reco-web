@@ -173,7 +173,7 @@ function ProductSlider() {
               <circle cx="9" cy="9" r="2"/>
               <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
             </svg>
-            <span style={{ color: 'rgba(15,28,46,0.2)', fontSize: 11, letterSpacing: '0.14em', fontWeight: 500, textTransform: 'uppercase' }}>
+            <span style={{ color: '#0f1c2e', fontSize: 11, letterSpacing: '0.14em', fontWeight: 500, textTransform: 'uppercase' }}>
               Product Screenshot {slideIdx + 1} of {TOTAL}
             </span>
           </div>
@@ -339,7 +339,7 @@ function Footer() {
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:flex-nowrap md:gap-8">
           {links.map((l) => (
             <a key={l} href={l === "About" ? "About.html" : l === "Case Studies" ? "case-studies.html" : "#"}
-              className="text-white hover:text-white/80 transition-colors text-xs">
+              className="text-white hover:text-white transition-colors text-xs">
               {l}
             </a>
           ))}
