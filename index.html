@@ -237,9 +237,15 @@
     }
 
     @keyframes textShine {
-      0% { background-position: 200% center; }
-      100% { background-position: -200% center; }
+      0% {
+        background-position: 200% center;
+      }
+
+      100% {
+        background-position: -200% center;
+      }
     }
+
     .shine-text {
       background: linear-gradient(135deg, #0f1c2e 30%, #ffffff 50%, #0f1c2e 70%);
       background-size: 200% auto;
@@ -260,6 +266,838 @@
         transform: translateY(0);
       }
     }
+
+    /* ---- Step 01 drag-and-drop animation ---- */
+    .s01-stage {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 50%, #B8C5FF 100%);
+    }
+
+    .s01-source-pile {
+      position: absolute;
+      left: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 4;
+      animation: s01StackMove 12s ease-in-out infinite;
+    }
+
+    @keyframes s01StackMove {
+
+      0%,
+      18% {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+      }
+
+      22% {
+        transform: translateY(-52%) translateX(0) scale(1.03);
+        opacity: 1;
+      }
+
+      50% {
+        transform: translateY(-50%) translateX(220px) scale(0.95);
+        opacity: 1;
+      }
+
+      58%,
+      97% {
+        transform: translateY(-50%) translateX(240px) scale(0.4);
+        opacity: 0;
+      }
+
+      98%,
+      100% {
+        transform: translateY(-50%) translateX(0) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .s01-doc {
+      background: white;
+      border-radius: 7px;
+      padding: 7px 11px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #0F172A;
+      box-shadow: 0 3px 10px rgba(15, 28, 46, .10), 0 1px 2px rgba(15, 28, 46, .06);
+      border: 1px solid rgba(15, 28, 46, .06);
+      white-space: nowrap;
+    }
+
+    .s01-cursor {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      z-index: 10;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(15, 28, 46, 0.25));
+      animation: s01CursorPath 12s ease-in-out infinite;
+    }
+
+    @keyframes s01CursorPath {
+      0% {
+        left: 80%;
+        top: 88%;
+      }
+
+      15% {
+        left: 18%;
+        top: 50%;
+      }
+
+      22% {
+        left: 18%;
+        top: 50%;
+      }
+
+      50% {
+        left: 50%;
+        top: 50%;
+      }
+
+      58% {
+        left: 50%;
+        top: 50%;
+      }
+
+      75% {
+        left: 80%;
+        top: 88%;
+      }
+
+      100% {
+        left: 80%;
+        top: 88%;
+      }
+    }
+
+    .s01-drop-zone {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 110px;
+      height: 110px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 2px dashed rgba(159, 250, 142, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      animation: s01DropFlash 12s infinite;
+    }
+
+    @keyframes s01DropFlash {
+
+      0%,
+      55%,
+      65%,
+      100% {
+        background: rgba(255, 255, 255, 0.6);
+        border-color: rgba(159, 250, 142, 0.7);
+        box-shadow: 0 0 0 0 rgba(159, 250, 142, 0);
+      }
+
+      58% {
+        background: rgba(159, 250, 142, 0.3);
+        border-color: rgba(159, 250, 142, 1);
+        box-shadow: 0 0 0 16px rgba(159, 250, 142, 0);
+      }
+    }
+
+    .s01-output-area {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 165px;
+      z-index: 3;
+      max-height: 88%;
+    }
+
+    .s01-output-header {
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #475569;
+      margin-bottom: 4px;
+      opacity: 0;
+      animation: s01AppearAll 12s infinite;
+      animation-delay: 6.9s;
+    }
+
+    .s01-output-item {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(15, 28, 46, 0.08);
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 9.5px;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transform: translateX(12px);
+      box-shadow: 0 1px 2px rgba(15, 28, 46, 0.05);
+    }
+
+    .s01-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .s01-out-1 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 7.05s;
+    }
+
+    .s01-out-2 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 7.28s;
+    }
+
+    .s01-out-3 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 7.50s;
+    }
+
+    .s01-out-4 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 7.73s;
+    }
+
+    .s01-out-5 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 7.95s;
+    }
+
+    .s01-out-6 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 8.18s;
+    }
+
+    .s01-out-7 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 8.40s;
+    }
+
+    .s01-out-8 {
+      animation: s01AppearItem 12s infinite;
+      animation-delay: 8.63s;
+    }
+
+    @keyframes s01AppearItem {
+      0% {
+        opacity: 0;
+        transform: translateX(12px);
+      }
+
+      3%,
+      36% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      40%,
+      100% {
+        opacity: 0;
+        transform: translateX(12px);
+      }
+    }
+
+    @keyframes s01AppearAll {
+      0% {
+        opacity: 0;
+      }
+
+      3%,
+      36% {
+        opacity: 0.7;
+      }
+
+      40%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .s01-label {
+      position: absolute;
+      bottom: 14px;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #475569;
+      opacity: 0.65;
+    }
+
+    .s01-label-input {
+      left: 24px;
+    }
+
+    .s01-label-output {
+      right: 24px;
+    }
+
+    /* 1. First, update s01-stage to center the card */
+    .s01-stage {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 50%, #B8C5FF 100%);
+      /* Add these two lines */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 2. Add the transparent glass card style */
+    .s01-glass-card {
+      width: 94%;
+      height: 90%;
+      position: relative;
+      background: rgba(255, 255, 255, 0.3);
+      /* Transparent white */
+      backdrop-filter: blur(15px) saturate(160%);
+      /* The "glass" blur effect */
+      -webkit-backdrop-filter: blur(15px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      /* Subtle white border */
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* ---- Step 02 engineering precision animation ---- */
+    .s02-stage {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 50%, #B8C5FF 100%);
+      overflow: hidden;
+      padding: 31px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 21px;
+      box-sizing: border-box;
+    }
+
+    .s02-column {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .s02-panel-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #475569;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-shrink: 0;
+    }
+
+    .s02-live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #16A34A;
+      animation: s02Pulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes s02Pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4);
+      }
+
+      50% {
+        opacity: 0.6;
+        box-shadow: 0 0 0 5px rgba(22, 163, 74, 0);
+      }
+    }
+
+    .s02-log-panel {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      border: 1px solid rgba(15, 28, 46, 0.08);
+      overflow: hidden;
+      position: relative;
+      min-height: 0;
+    }
+
+    .s02-log-scroll {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .s02-log-line {
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #0F172A;
+      padding: 6px 9px;
+      border-radius: 5px;
+      background: rgba(200, 200, 210, 0.25);
+      border: 1px solid rgba(15, 28, 46, 0.08);
+      flex-shrink: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.15s ease, transform 0.15s ease,
+        background 0.6s ease, border-color 0.6s ease;
+    }
+
+    .s02-log-line.s02-show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .s02-log-line.s02-colored.s02-info {
+      background: rgba(255, 255, 255, 0.6);
+      border-color: rgba(15, 28, 46, 0.04);
+    }
+
+    .s02-log-line.s02-colored.s02-detect {
+      background: rgba(194, 65, 12, 0.06);
+      border-color: rgba(194, 65, 12, 0.18);
+    }
+
+    .s02-log-line.s02-colored.s02-conflict {
+      background: rgba(220, 38, 38, 0.06);
+      border-color: rgba(220, 38, 38, 0.18);
+    }
+
+    .s02-log-line.s02-colored.s02-action {
+      background: rgba(126, 34, 206, 0.05);
+      border-color: rgba(126, 34, 206, 0.18);
+    }
+
+    .s02-tag {
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-right: 8px;
+      color: #94a3b8;
+      transition: color 0.6s ease;
+    }
+
+    .s02-log-line.s02-colored.s02-info .s02-tag {
+      color: #475569;
+    }
+
+    .s02-log-line.s02-colored.s02-detect .s02-tag {
+      color: #C2410C;
+    }
+
+    .s02-log-line.s02-colored.s02-conflict .s02-tag {
+      color: #DC2626;
+    }
+
+    .s02-log-line.s02-colored.s02-action .s02-tag {
+      color: #7E22CE;
+    }
+
+    .s02-fade-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 47px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(240, 244, 255, 0.9));
+      border-radius: 0 0 10px 10px;
+      pointer-events: none;
+    }
+
+    .s02-issues-panel {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      border: 1px solid rgba(15, 28, 46, 0.08);
+      padding: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 0;
+    }
+
+    .s02-issue-category {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .s02-issue-category.s02-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .s02-category-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .s02-issue {
+      background: rgba(255, 255, 255, 0.7);
+      border-left: 3px solid;
+      border-radius: 0 5px 5px 0;
+      padding: 7px 11px;
+      font-size: 11px;
+      color: #0F172A;
+      line-height: 1.4;
+    }
+
+    .s02-issue strong {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 12px;
+    }
+
+    .s02-detail {
+      font-size: 10.5px;
+      color: #475569;
+      line-height: 1.35;
+      display: block;
+    }
+
+    .s02-issue.s02-conflict {
+      border-color: #EA580C;
+      background: rgba(234, 88, 12, 0.05);
+    }
+
+    .s02-issue.s02-conflict strong {
+      color: #C2410C;
+    }
+
+    .s02-issue.s02-deadline {
+      border-color: #DC2626;
+      background: rgba(220, 38, 38, 0.05);
+    }
+
+    .s02-issue.s02-deadline strong {
+      color: #B91C1C;
+    }
+
+    .s02-issue.s02-compliance {
+      border-color: #B91C1C;
+      background: rgba(185, 28, 28, 0.05);
+    }
+
+    .s02-issue.s02-compliance strong {
+      color: #991B1B;
+    }
+
+    /* Dashboard Specific Animations */
+    @keyframes db-buildReveal {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -46%);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @keyframes db-cardFromLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-22px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes db-cardFromRight {
+      0% {
+        opacity: 0;
+        transform: translateX(22px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes db-connIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes db-barFill {
+      0% {
+        width: 0%;
+      }
+
+      100% {
+        width: 17%;
+      }
+    }
+
+    @keyframes db-pulseDot {
+
+      0%,
+      65%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      82% {
+        opacity: 0.25;
+        transform: scale(1.5);
+      }
+    }
+
+    @keyframes db-floatCard {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    @keyframes db-windowBlink {
+
+      0%,
+      88%,
+      100% {
+        opacity: 0.45;
+      }
+
+      94% {
+        opacity: 0.9;
+      }
+    }
+
+    .db-wrap {
+      position: relative;
+      width: 100%;
+      height: 490px;
+      background: transparent;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .db-conn-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      animation: db-connIn 0.7s ease-out 2.6s forwards;
+    }
+
+    .db-bwrap {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -52%);
+      opacity: 0;
+      animation: db-buildReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+    }
+
+    .db-card {
+      position: absolute;
+      width: 182px;
+      padding: 13px 14px 14px;
+      opacity: 0;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(12px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    }
+
+    .db-card.c1 {
+      left: 18px;
+      top: 80px;
+      animation: db-cardFromLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) 1.3s forwards;
+    }
+
+    .db-card.c2 {
+      right: 18px;
+      top: 40px;
+      animation: db-cardFromRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) 1.6s forwards;
+    }
+
+    .db-card.c3 {
+      right: 18px;
+      top: 220px;
+      animation: db-cardFromRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) 1.9s forwards;
+    }
+
+    .db-card.c4 {
+      left: 18px;
+      top: 340px;
+      width: 340px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid #9ffa8e;
+      animation: db-cardFromLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
+      z-index: 10;
+    }
+
+    .db-lbl {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 7px;
+    }
+
+    .db-val {
+      font-size: 32px;
+      font-weight: 500;
+      color: #0F172A;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .db-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 2px 7px 2px 5px;
+      border-radius: 3px;
+      margin-bottom: 9px;
+    }
+
+    .db-br {
+      background: rgba(220, 38, 38, 0.09);
+      color: #DC2626;
+    }
+
+    .db-ba {
+      background: rgba(234, 179, 8, 0.13);
+      color: #92400E;
+    }
+
+    .db-bo {
+      background: rgba(234, 88, 12, 0.10);
+      color: #EA580C;
+    }
+
+    .db-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .db-dr {
+      background: #DC2626;
+      animation: db-pulseDot 3s ease-in-out 4s infinite;
+    }
+
+    .db-da {
+      background: #D97706;
+    }
+
+    .db-do {
+      background: #EA580C;
+    }
+
+    .db-prog-wrap {
+      height: 4px;
+      background: rgba(15, 28, 46, 0.09);
+      border-radius: 2px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .db-prog-bar {
+      height: 100%;
+      border-radius: 2px;
+      background: #DC2626;
+      width: 0;
+      animation: db-barFill 1.1s ease-out 2s forwards;
+    }
+
+    .db-yr {
+      font-size: 28px;
+      font-weight: 500;
+      color: #0F172A;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .db-yr-sub {
+      font-size: 10px;
+      color: #94A3B8;
+      margin-bottom: 9px;
+    }
+
+    .db-w-blink {
+      animation: db-windowBlink 5s ease-in-out 5s infinite;
+    }
   </style>
 </head>
 
@@ -278,7 +1116,7 @@
     crossorigin="anonymous"></script>
 
   <script type="text/babel" data-presets="env,react">
-    const { useEffect, useState, useMemo } = React;
+    const { useEffect, useState, useMemo, useRef } = React;
 
     /* ---------- FadeIn ---------- */
     function FadeIn({ delay = 0, duration = 1000, children, className = "", style = {} }) {
@@ -713,6 +1551,277 @@
     }
 
     /* ---------- How It Works Section ---------- */
+    function Step02Animation() {
+      const scrollRef = useRef(null);
+      const logPanelRef = useRef(null);
+      const cat1Ref = useRef(null);
+      const cat2Ref = useRef(null);
+      const cat3Ref = useRef(null);
+
+      useEffect(() => {
+        const LINES = [
+          { cls: 'info', tag: 'OCR', text: 'Reading "Roof_Report.pdf"' },
+          { cls: 'info', tag: 'Parse', text: '312 pages extracted' },
+          { cls: 'info', tag: 'Found', text: 'Asset: "Asphalt Shingles"' },
+          { cls: 'info', tag: 'Extract', text: 'Rated "Fair", RUL: 8 years' },
+          { cls: 'info', tag: 'Vision', text: 'Processing "Roof_Photo.jpg"' },
+          { cls: 'detect', tag: 'Detected', text: 'Granule loss (94% confidence)' },
+          { cls: 'conflict', tag: 'Conflict', text: 'Visual contradicts study rating' },
+          { cls: 'action', tag: 'Action', text: 'Downgrading condition to "Poor"' },
+          { cls: 'info', tag: 'Check', text: 'Cross-referencing maintenance logs' },
+          { cls: 'info', tag: 'Scan', text: 'Reading "Compliance_2024.pdf"' },
+          { cls: 'conflict', tag: 'Missing', text: 'Fire cert not found in records' },
+          { cls: 'detect', tag: 'Detected', text: 'Inspection 45 days overdue' },
+          { cls: 'action', tag: 'Flag', text: 'Escalating 3 issues for review' },
+        ];
+        const REVEAL_AT = { cat1: 6, cat2: 11, cat3: 12 };
+        const CHAR_DELAY = 28, LINE_DELAY = 80, LOOP_PAUSE = 1800;
+        let timeouts = [], lineEls = [], running = true;
+
+        const addTimeout = (fn, delay) => { const id = setTimeout(fn, delay); timeouts.push(id); return id; };
+
+        const getMaxScroll = () => logPanelRef.current ? logPanelRef.current.clientHeight - 80 : 200;
+
+        const adjustScroll = () => {
+          if (!scrollRef.current) return;
+          const total = lineEls.reduce((s, el) => s + el.offsetHeight + 6, 0);
+          const max = getMaxScroll();
+          scrollRef.current.style.transform = total > max ? `translateY(${-(total - max)}px)` : 'translateY(0)';
+        };
+
+        const typeText = (el, text, cb) => {
+          const span = el.querySelector('.s02-typed-text');
+          let i = 0;
+          const tick = () => {
+            if (!running) return;
+            span.textContent = text.slice(0, i);
+            if (i < text.length) { i++; addTimeout(tick, CHAR_DELAY); }
+            else if (cb) addTimeout(cb, 20);
+          };
+          tick();
+        };
+
+        const runLoop = () => {
+          if (!running || !scrollRef.current) return;
+          scrollRef.current.innerHTML = '';
+          lineEls = [];
+          scrollRef.current.style.transition = 'none';
+          scrollRef.current.style.transform = 'translateY(0)';
+          [cat1Ref, cat2Ref, cat3Ref].forEach(r => r.current && r.current.classList.remove('s02-visible'));
+          addTimeout(() => { if (scrollRef.current) scrollRef.current.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)'; }, 50);
+
+          let i = 0;
+          const nextLine = () => {
+            if (!running) return;
+            if (i >= LINES.length) { addTimeout(runLoop, LOOP_PAUSE); return; }
+            const d = LINES[i];
+            const div = document.createElement('div');
+            div.className = `s02-log-line s02-${d.cls}`;
+            div.innerHTML = `<span class="s02-tag">${d.tag}</span><span class="s02-typed-text"></span>`;
+            scrollRef.current.appendChild(div);
+            lineEls.push(div);
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              if (!running) return;
+              div.classList.add('s02-show');
+              adjustScroll();
+            }));
+            typeText(div, d.text, () => {
+              requestAnimationFrame(() => requestAnimationFrame(() => { if (running) div.classList.add('s02-colored'); }));
+              const idx = i + 1;
+              if (idx === REVEAL_AT.cat1) cat1Ref.current && cat1Ref.current.classList.add('s02-visible');
+              if (idx === REVEAL_AT.cat2) cat2Ref.current && cat2Ref.current.classList.add('s02-visible');
+              if (idx === REVEAL_AT.cat3) cat3Ref.current && cat3Ref.current.classList.add('s02-visible');
+              i++;
+              addTimeout(nextLine, LINE_DELAY);
+            });
+          };
+          nextLine();
+        };
+
+        runLoop();
+        return () => { running = false; timeouts.forEach(clearTimeout); };
+      }, []);
+
+      return (
+        <div className="s02-stage">
+          <div className="s02-column">
+            <div className="s02-panel-label"><span className="s02-live-dot"></span>Processing log</div>
+            <div className="s02-log-panel" ref={logPanelRef}>
+              <div className="s02-log-scroll" ref={scrollRef}></div>
+              <div className="s02-fade-bottom"></div>
+            </div>
+          </div>
+          <div className="s02-column">
+            <div className="s02-panel-label">Issues detected</div>
+            <div className="s02-issues-panel">
+              <div className="s02-issue-category" ref={cat1Ref}>
+                <div className="s02-category-title"><span style={{ color: '#EA580C', fontSize: '13px' }}>▲</span><span>Conflicts</span></div>
+                <div className="s02-issue s02-conflict"><strong>Asphalt Shingles</strong><span className="s02-detail">Visual shows granule loss. RUL: 8 → 2 yrs</span></div>
+              </div>
+              <div className="s02-issue-category" ref={cat2Ref}>
+                <div className="s02-category-title"><span style={{ color: '#DC2626', fontSize: '13px' }}>◉</span><span>Missed deadlines</span></div>
+                <div className="s02-issue s02-deadline"><strong>Roof Inspection · Overdue</strong><span className="s02-detail">Annual inspection due 45 days ago</span></div>
+              </div>
+              <div className="s02-issue-category" ref={cat3Ref}>
+                <div className="s02-category-title"><span style={{ color: '#B91C1C', fontSize: '13px' }}>✕</span><span>Compliance issues</span></div>
+                <div className="s02-issue s02-compliance"><strong>Fire System Certificate</strong><span className="s02-detail">Missing. Required by code §24.8.2</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function Step01Animation() {
+      return (
+        <div className="s01-stage">
+          <div className="s01-glass-card">
+            <div className="s01-source-pile">
+              <div className="s01-doc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2410C" strokeWidth="2.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <path d="M14 2v6h6" />
+                </svg>
+                Engineer_Report_2018.pdf
+              </div>
+              <div className="s01-doc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="9" cy="9" r="2" />
+                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                </svg>
+                Roof_photos.zip
+              </div>
+              <div className="s01-doc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <line x1="3" y1="9" x2="21" y2="9" />
+                  <line x1="9" y1="21" x2="9" y2="9" />
+                </svg>
+                Q3_Financials.xlsx
+              </div>
+              <div className="s01-doc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7E22CE" strokeWidth="2.5">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="23" />
+                </svg>
+                Super_walkthrough.m4a
+              </div>
+              <div className="s01-doc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2410C" strokeWidth="2.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <path d="M14 2v6h6" />
+                </svg>
+                Insurance_Policy.pdf
+              </div>
+            </div>
+
+            <div className="s01-drop-zone">
+              <svg style={{ opacity: 0.55 }} width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0F172A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+            </div>
+
+            <svg className="s01-cursor" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 2 L2 16 L6.5 12.5 L9 18 L11.5 17 L9 11.5 L14.5 11.5 Z"
+                fill="#0F172A" stroke="white" strokeWidth="1.2" strokeLinejoin="round" />
+            </svg>
+
+            <div className="s01-output-area">
+              <div className="s01-output-header">Building components</div>
+              <div className="s01-output-item s01-out-1"><span className="s01-dot" style={{ background: '#DC2626' }}></span>Roof membrane · Failing</div>
+              <div className="s01-output-item s01-out-2"><span className="s01-dot" style={{ background: '#16A34A' }}></span>HVAC system · Good</div>
+              <div className="s01-output-item s01-out-3"><span className="s01-dot" style={{ background: '#EAB308' }}></span>Elevator cab · Fair</div>
+              <div className="s01-output-item s01-out-4"><span className="s01-dot" style={{ background: '#16A34A' }}></span>Façade brick · Good</div>
+              <div className="s01-output-item s01-out-5"><span className="s01-dot" style={{ background: '#DC2626' }}></span>Boiler unit · Poor</div>
+              <div className="s01-output-item s01-out-6"><span className="s01-dot" style={{ background: '#EAB308' }}></span>Parking deck · Fair</div>
+              <div className="s01-output-item s01-out-7"><span className="s01-dot" style={{ background: '#16A34A' }}></span>Window glazing · Good</div>
+              <div className="s01-output-item s01-out-8"><span className="s01-dot" style={{ background: '#DC2626' }}></span>Plumbing risers · Poor</div>
+            </div>
+
+            <span className="s01-label s01-label-input">Your files</span>
+            <span className="s01-label s01-label-output">Component library</span>
+          </div>
+        </div>
+      );
+    }
+    function Step03Animation() {
+      const containerRef = useRef(null);
+
+      useEffect(() => {
+        const cards = containerRef.current.querySelectorAll('.db-card');
+        const handlers = [];
+
+        cards.forEach(card => {
+          const onAnimationEnd = (e) => {
+            if (e.animationName === 'db-cardFromLeft' || e.animationName === 'db-cardFromRight') {
+              card.style.opacity = '1';
+              card.style.transform = 'translateX(0)';
+              card.style.animation = `db-floatCard ${(4 + Math.random() * 1.5).toFixed(1)}s ease-in-out infinite`;
+            }
+          };
+          card.addEventListener('animationend', onAnimationEnd);
+          handlers.push({ card, onAnimationEnd });
+        });
+
+        return () => {
+          handlers.forEach(({ card, onAnimationEnd }) => card.removeEventListener('animationend', onAnimationEnd));
+        };
+      }, []);
+
+      return (
+        <div className="db-wrap" ref={containerRef}>
+          <svg className="db-conn-svg" viewBox="0 0 680 490" preserveAspectRatio="xMidYMid meet">
+            <line x1="200" y1="222" x2="268" y2="243" stroke="rgba(71,85,105,0.28)" strokeWidth="1" strokeDasharray="3.5 3" />
+            <line x1="480" y1="128" x2="414" y2="200" stroke="rgba(71,85,105,0.28)" strokeWidth="1" strokeDasharray="3.5 3" />
+            <line x1="480" y1="340" x2="414" y2="296" stroke="rgba(71,85,105,0.28)" strokeWidth="1" strokeDasharray="3.5 3" />
+            <circle cx="200" cy="222" r="2.8" fill="rgba(71,85,105,0.28)" /><circle cx="480" cy="128" r="2.8" fill="rgba(71,85,105,0.28)" /><circle cx="480" cy="340" r="2.8" fill="rgba(71,85,105,0.28)" />
+          </svg>
+
+          <div className="db-bwrap">
+            <svg width="148" height="218" viewBox="0 0 148 218">
+              <ellipse cx="74" cy="211" rx="62" ry="5" fill="rgba(15,28,46,0.07)" />
+              <rect x="24" y="20" width="100" height="183" rx="2" fill="rgba(255,255,255,0.26)" stroke="#1E293B" strokeWidth="1.2" opacity="0.88" />
+              <rect className="db-w-blink" x="33" y="27" width="20" height="22" rx="1" fill="rgba(176,196,255,0.48)" stroke="#1E293B" strokeWidth="0.7" opacity="0.85" />
+              <rect x="64" y="27" width="20" height="22" rx="1" fill="rgba(176,196,255,0.42)" stroke="#1E293B" strokeWidth="0.7" opacity="0.85" />
+              <rect x="95" y="27" width="20" height="22" rx="1" fill="rgba(176,196,255,0.48)" stroke="#1E293B" strokeWidth="0.7" opacity="0.85" />
+              <line x1="24" y1="57" x2="124" y2="57" stroke="#1E293B" strokeWidth="0.7" opacity="0.28" />
+              <rect x="58" y="169" width="32" height="34" rx="1" fill="rgba(176,196,255,0.5)" stroke="#1E293B" strokeWidth="0.9" opacity="0.82" />
+            </svg>
+          </div>
+
+          <div className="db-card c1">
+            <div className="db-lbl">Reserve Funding</div>
+            <div className="db-val" style={{ color: '#DC2626' }}>17%</div>
+            <div className="db-badge db-br"><span className="db-dot db-dr"></span>Low</div>
+            <div className="db-prog-wrap"><div className="db-prog-bar"></div></div>
+          </div>
+
+          <div className="db-card c2">
+            <div className="db-lbl">Monthly HOA Fee</div>
+            <div className="db-val" style={{ color: '#B45309', fontSize: '26px' }}>29% lower</div>
+            <div className="db-badge db-ba"><span className="db-dot db-da"></span>Below peers</div>
+          </div>
+
+          <div className="db-card c3">
+            <div className="db-lbl">Special Assessment Risk</div>
+            <div className="db-yr">2029</div>
+            <div className="db-yr-sub">Projected risk year · ~3 yrs out</div>
+            <div className="db-badge db-bo"><span className="db-dot db-do"></span>Elevated</div>
+          </div>
+
+          <div className="db-card c4">
+            <div className="db-lbl">Recommendation</div>
+            <div className="text-[12px]" style={{ color: '#0F172A', fontWeight: 500 }}>
+              Increase the contributions by <span style={{ color: '#16a34a', fontWeight: 700 }}>18%</span> to meet Fannie Mae requirements and avoid special assessments.
+            </div>
+          </div>
+        </div>
+      );
+    }
     function HowItWorks() {
       const steps = [
         {
@@ -770,12 +1879,13 @@
       const current = steps[active];
 
       useEffect(() => {
-        const id = setInterval(() => {
+        const duration = active === 0 ? 12000 : active === 1 ? 14000 : 8000;
+        const id = setTimeout(() => {
           setActive((a) => (a + 1) % steps.length);
           setTick((t) => t + 1);
-        }, 8000);
-        return () => clearInterval(id);
-      }, [tick, steps.length]);
+        }, duration);
+        return () => clearTimeout(id);
+      }, [tick, active, steps.length]);
 
       const goPrev = () => {
         setActive((a) => (a - 1 + steps.length) % steps.length);
@@ -819,7 +1929,7 @@
 
       return (
         <section className="py-24 px-6">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-3">
               How It Works
             </div>
@@ -859,13 +1969,28 @@
                 <div
                   key={active}
                   className="grid grid-cols-1 md:grid-cols-5 gap-0 items-stretch"
-                  style={{ animation: "howFadeIn 300ms ease-in-out", minHeight: "clamp(18rem, 50vw, 28rem)" }}
+                  style={{ animation: "howFadeIn 300ms ease-in-out", minHeight: "clamp(22rem, 55vw, 34rem)" }}
                 >
-                  <div className="md:col-span-3 bg-transparent p-10 flex items-center justify-center">
-                    <div className="rounded-2xl bg-white/40 border border-white/60 p-10 flex items-center justify-center">
-                      {stepIcons[active]}
+                  {active === 0 ? (
+                    <div className="md:col-span-3 relative" style={{ minHeight: '280px' }}>
+                      <Step01Animation />
                     </div>
-                  </div>
+                  ) : active === 1 ? (
+                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
+                      <Step02Animation />
+                    </div>
+                  ) : active === 2 ? (
+                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
+                      {/* This is your new dashboard! */}
+                      <Step03Animation />
+                    </div>
+                  ) : (
+                    <div className="md:col-span-3 bg-transparent p-10 flex items-center justify-center">
+                      <div className="rounded-2xl bg-white/40 border border-white/60 p-10 flex items-center justify-center">
+                        {stepIcons[active]}
+                      </div>
+                    </div>
+                  )}
 
                   <div className="md:col-span-2 bg-white/20 border-l border-white/40 p-8 flex flex-col justify-between gap-6">
                     <div className="text-sm text-[#0f1c2e] leading-relaxed">
@@ -1181,7 +2306,7 @@
           seed: "ipek",
         },
         {
-          name: "C. Deyerman, MSc",
+          name: "C. Deyerman, MSc & MEng",
           title: "Chief Technology Officer",
           seed: "deyerman",
         },
