@@ -688,12 +688,12 @@
 
     .s01-input-header,
     .s01-output-header {
-      font-size: 9.5px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: #475569;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       opacity: 0;
       animation: s01AppearAll 12s infinite;
       animation-delay: 6.9s;
@@ -715,48 +715,17 @@
       color: #0F172A;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      gap: 7px;
       opacity: 0;
       transform: translateX(12px);
       box-shadow: 0 1px 2px rgba(15, 28, 46, 0.05);
     }
 
-    .s01-item-name {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .s01-cond-pill {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      white-space: nowrap;
+    .s01-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
       flex-shrink: 0;
-    }
-
-    .s01-cond-good {
-      color: #166534;
-      background: rgba(34, 197, 94, 0.18);
-      border-color: rgba(34, 197, 94, 0.35);
-    }
-
-    .s01-cond-fair {
-      color: #854d0e;
-      background: rgba(234, 179, 8, 0.2);
-      border-color: rgba(234, 179, 8, 0.38);
-    }
-
-    .s01-cond-poor {
-      color: #991b1b;
-      background: rgba(239, 68, 68, 0.2);
-      border-color: rgba(239, 68, 68, 0.36);
     }
 
     .s01-out-1 {
@@ -1247,7 +1216,8 @@
     .db-wrap {
       position: relative;
       width: 100%;
-      height: 490px;
+      height: 100%;
+      min-height: 280px;
       background: linear-gradient(148deg, #E0E8FF 0%, #C8D5FF 48%, #B8C5FF 100%);
       border-radius: 10px;
       overflow: hidden;
@@ -1325,7 +1295,7 @@
 
     .db-card.c4 {
       left: 18px;
-      top: 384px;
+      top: 418px;
       width: 432px;
       padding: 8px 14px;
       background: rgba(30, 47, 77, 0.88);
@@ -2315,14 +2285,14 @@
 
             <div className="s01-output-area">
               <div className="s01-output-header">Building components</div>
-              <div className="s01-output-item s01-out-1"><span className="s01-item-name">Roof membrane</span><span className="s01-cond-pill s01-cond-poor">Poor</span></div>
-              <div className="s01-output-item s01-out-2"><span className="s01-item-name">HVAC system</span><span className="s01-cond-pill s01-cond-good">Good</span></div>
-              <div className="s01-output-item s01-out-3"><span className="s01-item-name">Elevator cab</span><span className="s01-cond-pill s01-cond-fair">Fair</span></div>
-              <div className="s01-output-item s01-out-4"><span className="s01-item-name">Façade brick</span><span className="s01-cond-pill s01-cond-good">Good</span></div>
-              <div className="s01-output-item s01-out-5"><span className="s01-item-name">Boiler unit</span><span className="s01-cond-pill s01-cond-poor">Poor</span></div>
-              <div className="s01-output-item s01-out-6"><span className="s01-item-name">Parking deck</span><span className="s01-cond-pill s01-cond-fair">Fair</span></div>
-              <div className="s01-output-item s01-out-7"><span className="s01-item-name">Window glazing</span><span className="s01-cond-pill s01-cond-good">Good</span></div>
-              <div className="s01-output-item s01-out-8"><span className="s01-item-name">Plumbing risers</span><span className="s01-cond-pill s01-cond-poor">Poor</span></div>
+              <div className="s01-output-item s01-out-1"><span className="s01-dot" style={{ background: '#DC2626' }}></span>Roof membrane · Failing</div>
+              <div className="s01-output-item s01-out-2"><span className="s01-dot" style={{ background: '#16A34A' }}></span>HVAC system · Good</div>
+              <div className="s01-output-item s01-out-3"><span className="s01-dot" style={{ background: '#EAB308' }}></span>Elevator cab · Fair</div>
+              <div className="s01-output-item s01-out-4"><span className="s01-dot" style={{ background: '#16A34A' }}></span>Façade brick · Good</div>
+              <div className="s01-output-item s01-out-5"><span className="s01-dot" style={{ background: '#DC2626' }}></span>Boiler unit · Poor</div>
+              <div className="s01-output-item s01-out-6"><span className="s01-dot" style={{ background: '#EAB308' }}></span>Parking deck · Fair</div>
+              <div className="s01-output-item s01-out-7"><span className="s01-dot" style={{ background: '#16A34A' }}></span>Window glazing · Good</div>
+              <div className="s01-output-item s01-out-8"><span className="s01-dot" style={{ background: '#DC2626' }}></span>Plumbing risers · Poor</div>
             </div>
           </div>
         </div>
