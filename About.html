@@ -197,7 +197,8 @@ function Team() {
               <img
                 src={`https://api.dicebear.com/7.x/notionists/svg?seed=${p.seed}&backgroundColor=e8f0ff,dce8ff,f5f7fa&radius=16`}
                 alt={p.name}
-                className="w-24 h-24 rounded-2xl object-cover mb-4 shadow-sm border border-white/70 bg-white"
+                className="w-24 h-24 rounded-2xl object-cover mb-4 shadow-sm bg-white"
+                style={{ border: '1px solid #9ffa8e' }}
               />
               <div className="text-sm font-semibold text-[#0f1c2e] mb-0.5">
                 {p.name}
@@ -237,10 +238,10 @@ function BottomCTA() {
           Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
         </p>
         <div className="flex gap-4 flex-wrap">
-          <button className="bg-[#0f1c2e] text-white rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-[#1a2f4a] transition-colors">
+          <button className="bg-white text-[#0f1c2e] rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors border border-black/10">
             Start for Free
           </button>
-          <button className="bg-white/60 backdrop-blur-md border border-white/80 text-[#0f1c2e] rounded-full px-8 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors">
+          <button className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
             Book a Demo
           </button>
         </div>
