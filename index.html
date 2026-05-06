@@ -53,6 +53,11 @@
       pointer-events: none;
     }
 
+    .hero-role {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
     .hero-bg::before,
     .hero-bg::after {
       content: "";
@@ -198,7 +203,7 @@
 
     .hero-chat-stage {
       width: 100%;
-      min-height: 420px;
+      min-height: 540px;
       border-radius: 20px;
       padding: 20px;
       position: relative;
@@ -542,7 +547,7 @@
       flex-direction: column;
       gap: 9px;
       z-index: 4;
-      animation: s01StackMove 12s ease-in-out infinite;
+      animation: s01StackMove 12s ease-in-out forwards;
     }
 
     @keyframes s01StackMove {
@@ -598,7 +603,7 @@
       z-index: 10;
       pointer-events: none;
       filter: drop-shadow(0 2px 4px rgba(15, 28, 46, 0.25));
-      animation: s01CursorPath 12s ease-in-out infinite;
+      animation: s01CursorPath 12s ease-in-out forwards;
     }
 
     @keyframes s01CursorPath {
@@ -652,7 +657,7 @@
       align-items: center;
       justify-content: center;
       z-index: 2;
-      animation: s01DropFlash 12s infinite;
+      animation: s01DropFlash 12s forwards;
     }
 
     @keyframes s01DropFlash {
@@ -695,7 +700,7 @@
       color: #475569;
       margin-bottom: 10px;
       opacity: 0;
-      animation: s01AppearAll 12s infinite;
+      animation: s01AppearAll 12s forwards;
       animation-delay: 6.9s;
     }
 
@@ -729,42 +734,42 @@
     }
 
     .s01-out-1 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 7.05s;
     }
 
     .s01-out-2 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 7.28s;
     }
 
     .s01-out-3 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 7.50s;
     }
 
     .s01-out-4 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 7.73s;
     }
 
     .s01-out-5 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 7.95s;
     }
 
     .s01-out-6 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 8.18s;
     }
 
     .s01-out-7 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 8.40s;
     }
 
     .s01-out-8 {
-      animation: s01AppearItem 12s infinite;
+      animation: s01AppearItem 12s forwards;
       animation-delay: 8.63s;
     }
 
@@ -774,16 +779,10 @@
         transform: translateX(12px);
       }
 
-      3%,
-      36% {
+      10%,
+      100% {
         opacity: 1;
         transform: translateX(0);
-      }
-
-      40%,
-      100% {
-        opacity: 0;
-        transform: translateX(12px);
       }
     }
 
@@ -792,14 +791,9 @@
         opacity: 0;
       }
 
-      3%,
-      36% {
-        opacity: 0.7;
-      }
-
-      40%,
+      10%,
       100% {
-        opacity: 0;
+        opacity: 0.7;
       }
     }
 
@@ -1141,6 +1135,16 @@
       }
     }
 
+    @keyframes db-c4Wipe {
+      0%   { clip-path: inset(0 100% 0 0); }
+      100% { clip-path: inset(0 0% 0 0); }
+    }
+
+    @keyframes db-c4ContentIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
     @keyframes db-cardFromRight {
       0% {
         opacity: 0;
@@ -1265,7 +1269,7 @@
     .db-card {
       position: absolute;
       width: 182px;
-      padding: 13px 14px 14px;
+      padding: 13px 14px;
       opacity: 0;
       border-radius: 14px;
       background: rgba(255, 255, 255, 0.65);
@@ -1273,6 +1277,19 @@
       -webkit-backdrop-filter: blur(12px) saturate(160%);
       border: 1.5px solid rgba(255, 255, 255, 0.8);
       box-shadow: 0 4px 12px rgba(15, 28, 46, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .db-card .db-prog-wrap,
+    .db-card .db-meta {
+      align-self: stretch;
+    }
+
+    .db-card > *:last-child {
+      margin-bottom: 0;
     }
 
     .db-card.c1 {
@@ -1294,23 +1311,26 @@
     }
 
     .db-card.c4 {
-      left: 18px;
+      left: 0;
+      right: 0;
+      width: auto;
       top: 418px;
-      width: 432px;
-      padding: 8px 14px;
-      background: rgba(30, 47, 77, 0.88);
-      border: 1px solid #9ffa8e;
-      border-radius: 7px;
-      animation: db-cardFromLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
+      padding: 6px 18px;
+      background: rgba(30, 47, 77, 0.55);
+      border: none;
+      border-radius: 0;
+      opacity: 1;
+      clip-path: inset(0 100% 0 0);
+      animation: db-c4Wipe 0.55s cubic-bezier(0.22, 1, 0.36, 1) 2.2s forwards;
       z-index: 10;
-    }
-
-    .db-card.c4 .db-lbl {
-      color: rgba(226, 232, 240, 0.9);
+      align-items: flex-start;
+      text-align: left;
     }
 
     .db-card.c4 .db-desc {
       color: #E2E8F0;
+      opacity: 0;
+      animation: db-c4ContentIn 0.35s ease 2.78s forwards;
     }
 
     .db-type-cursor {
@@ -1321,6 +1341,7 @@
     }
 
     @keyframes dbTypeBlink {
+
       0%,
       49% {
         opacity: 0.85;
@@ -1462,75 +1483,359 @@
 
     /* ---- Step 04 governance / market coverage animation ---- */
     .s04-stage {
-      width: 100%; height: 100%; min-height: 320px;
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
       background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 52%, #B8C5FF 100%);
-      display: flex; flex-direction: column; overflow: hidden; position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
     }
+
     .s04-map-panel {
-      flex: 1; position: relative; min-height: 0; overflow: hidden;
+      flex: 1;
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
     }
+
     .s04-map-stat {
-      position: absolute; top: 16px; left: 20px; z-index: 2;
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      z-index: 2;
     }
+
     .s04-cards-panel {
-      flex: 0 0 auto; border-top: 1px solid rgba(255,255,255,.45);
-      padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px;
+      flex: 0 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, .45);
+      padding: 12px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
+
     .s04-cards-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 7px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
     }
+
     .s04-cr-list {
-      flex: 1; display: flex; flex-direction: column; justify-content: center;
-      padding-left: 8px; margin-left: 4px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 8px;
+      margin-left: 4px;
     }
-    .s04-cr-list > div { font-size: 10px; color: #64748B; line-height: 1.5; text-align: right; }
+
+    .s04-cr-list>div {
+      font-size: 10px;
+      color: #64748B;
+      line-height: 1.5;
+      text-align: right;
+    }
+
     .s04-lbl {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .14em; color: #475569;
-      display: flex; align-items: center; gap: 7px; margin-bottom: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 4px;
     }
+
     .s04-livdot {
-      width: 7px; height: 7px; border-radius: 50%; background: #9ffa8e;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #9ffa8e;
       animation: s04LivePulse 1.8s ease-in-out infinite;
     }
+
     @keyframes s04LivePulse {
-      0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(159,250,142,0.4); }
-      50%      { opacity:.5; box-shadow:0 0 0 5px rgba(159,250,142,0); }
+
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(159, 250, 142, 0.4);
+      }
+
+      50% {
+        opacity: .5;
+        box-shadow: 0 0 0 5px rgba(159, 250, 142, 0);
+      }
     }
+
     .s04-card {
-      background: rgba(255,255,255,.65); border: 1.5px solid rgba(255,255,255,.8);
-      border-radius: 14px; padding: 13px 14px;
-      display: flex; align-items: center; gap: 13px; transition: all .35s;
+      background: rgba(255, 255, 255, .65);
+      border: 1.5px solid rgba(255, 255, 255, .8);
+      border-radius: 14px;
+      padding: 13px 14px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      transition: all .35s;
     }
+
     .s04-card.s04-active {
-      background: rgba(255,255,255,0.95); border-color: #9ffa8e;
-      transform: translateX(5px); box-shadow: 0 4px 14px rgba(15,28,46,0.1);
+      background: rgba(255, 255, 255, 0.95);
+      border-color: #9ffa8e;
+      transform: translateX(5px);
+      box-shadow: 0 4px 14px rgba(15, 28, 46, 0.1);
     }
+
     .s04-card-icon {
-      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .s04-cn { font-size: 12px; font-weight: 700; color: #0F172A; white-space: nowrap; flex-shrink: 0; }
+
+    .s04-cn {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     .s04-note {
-      margin-top: auto; font-size: 10px; color: #64748B;
-      padding: 8px 0 0; border-top: 1px solid rgba(255,255,255,0.5);
+      margin-top: auto;
+      font-size: 10px;
+      color: #64748B;
+      padding: 8px 0 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
     }
-    .s04-jnum { font-size: 36px; font-weight: 700; color: #0F172A; line-height: 1; }
-    .s04-nunit { font-size: 12px; color: #475569; margin-left: 6px; font-weight: 500; }
+
+    .s04-jnum {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1;
+    }
+
+    .s04-nunit {
+      font-size: 12px;
+      color: #475569;
+      margin-left: 6px;
+      font-weight: 500;
+    }
+
     .s04-mapwrap {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
     }
-    .s04-land { fill: rgba(255,255,255,0.4); stroke: rgba(30,58,138,0.15); stroke-width: 0.8; }
-    .s04-marker { opacity: 0; transition: opacity 0.4s ease; }
-    .s04-marker.s04-visible { opacity: 1; }
-    .s04-pulse { fill: #9ffa8e; fill-opacity: 0.6; transform-origin: center; transform-box: fill-box; }
-    .s04-marker.s04-pulsing .s04-pulse { animation: s04PulseRing 2s ease-out infinite; }
+
+    .s04-land {
+      fill: rgba(255, 255, 255, 0.4);
+      stroke: rgba(30, 58, 138, 0.15);
+      stroke-width: 0.8;
+    }
+
+    .s04-marker {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .s04-marker.s04-visible {
+      opacity: 1;
+    }
+
+    .s04-pulse {
+      fill: #9ffa8e;
+      fill-opacity: 0.6;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    .s04-marker.s04-pulsing .s04-pulse {
+      animation: s04PulseRing 2s ease-out infinite;
+    }
+
     @keyframes s04PulseRing {
-      0%   { transform: scale(0.6); opacity: 0.9; }
-      100% { transform: scale(4);   opacity: 0; }
+      0% {
+        transform: scale(0.6);
+        opacity: 0.9;
+      }
+
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
     }
-    .s04-dot-core { fill: #9ffa8e; }
-    .s04-dot-ring { fill: none; stroke: white; stroke-width: 1.5; }
+
+    .s04-dot-core {
+      fill: #9ffa8e;
+    }
+
+    .s04-dot-ring {
+      fill: none;
+      stroke: white;
+      stroke-width: 1.5;
+    }
+
+    /* ---- Step 05 integrations hub ---- */
+    .s05-stage {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 52%, #B8C5FF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s05-hub {
+      position: relative;
+      width: min(100%, 500px);
+      aspect-ratio: 1 / 1;
+    }
+
+    .s05-orbit-ring {
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      border: 1.5px solid rgba(77, 107, 169, 0.45);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5) inset, 0 8px 32px rgba(15, 28, 46, 0.06);
+    }
+
+    .s05-orbit-glow {
+      position: absolute;
+      inset: 6%;
+      border-radius: 50%;
+      border: 1px dashed rgba(77, 107, 169, 0.2);
+    }
+
+    .s05-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 22%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1.5px solid #9ffa8e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      animation: s05Pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes s05Pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 8px 24px rgba(15, 28, 46, 0.12), 0 0 0 8px rgba(159, 250, 142, 0.12), 0 0 0 16px rgba(159, 250, 142, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      }
+
+      50% {
+        box-shadow: 0 8px 28px rgba(15, 28, 46, 0.15), 0 0 0 14px rgba(159, 250, 142, 0.16), 0 0 0 26px rgba(159, 250, 142, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      }
+    }
+
+    .s05-center-label {
+      font-size: clamp(9px, 1.5vw, 13px);
+      font-weight: 700;
+      color: #0f1c2e;
+      letter-spacing: -0.04em;
+    }
+
+    .s05-node {
+      position: absolute;
+      width: 17%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 4px 14px rgba(15, 28, 46, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4px;
+      transform: translate(-50%, -50%);
+      z-index: 6;
+      transition: all 350ms ease;
+      animation: s05NodePulse 3.2s ease-in-out infinite;
+    }
+    @keyframes s05NodePulse {
+      0%,100% { transform: translate(-50%, -50%) scale(1); }
+      50%      { transform: translate(-50%, -50%) scale(1.07); }
+    }
+
+    .s05-node:hover {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: #9ffa8e;
+      animation: none;
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+
+    .s05-node-name {
+      font-size: clamp(7px, 1vw, 11px);
+      font-weight: 600;
+      color: #0F172A;
+      line-height: 1.15;
+    }
+
+    .s05-flow-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .s05-flow-line {
+      stroke: rgba(77, 107, 169, 0.32);
+      stroke-width: 0.4;
+      fill: none;
+      stroke-dasharray: 1.5 2;
+    }
+
+    /* ---- Step 06 contractor flow ---- */
+    .s06-stage { width: 100%; height: 100%; background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 52%, #B8C5FF 100%); display: flex; align-items: center; justify-content: center; padding: 24px 36px; position: relative; overflow: hidden; }
+    .s06-track { display: flex; align-items: center; justify-content: center; width: 100%; }
+    .s06-step { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; opacity: 0; transform: translateY(14px); transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1); position: relative; z-index: 1; }
+    .s06-step.s06-vis { opacity: 1; transform: translateY(0); }
+    .s06-conn { flex: 1; height: 1.5px; background: rgba(77,107,169,0.2); position: relative; min-width: 16px; z-index: 0; opacity: 0; transition: opacity 0.4s ease; }
+    .s06-conn.s06-conn-vis { opacity: 1; }
+    .s06-conn::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); border-left: 7px solid rgba(77,107,169,0.2); border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: border-left-color 0.55s cubic-bezier(0.22,1,0.36,1); }
+    .s06-conn.s06-lit::after { border-left-color: #0f1c2e; }
+    .s06-fill { position: absolute; inset: 0; background: #0f1c2e; transform: scaleX(0); transform-origin: left; transition: transform 0.55s cubic-bezier(0.22,1,0.36,1); }
+    .s06-fill.s06-lit { transform: scaleX(1); }
+    .s06-circle { width: clamp(43px,5.9vw,61px); height: clamp(43px,5.9vw,61px); border-radius: 50%; background: rgba(255,255,255,0.55); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); border: 1.5px solid rgba(255,255,255,0.75); box-shadow: 0 4px 16px rgba(15,28,46,0.08), inset 0 1px 0 rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; position: relative; transition: background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .s06-circle svg { width: clamp(14px,2vw,20px); height: clamp(14px,2vw,20px); stroke: #4d6ba9; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.4s ease; }
+    .s06-num { position: absolute; top: -5px; left: -5px; width: 16px; height: 16px; border-radius: 50%; background: #4d6ba9; color: #fff; font-size: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.9); transition: background 0.4s ease, color 0.4s ease; }
+    .s06-lbl { margin-top: 8px; text-align: center; padding: 0 2px; }
+    .s06-lbl strong { display: block; font-size: clamp(7px,0.9vw,10px); font-weight: 600; color: #0f1c2e; line-height: 1.3; }
+    .s06-step.s06-active .s06-circle { background: rgba(255,255,255,0.92); border-color: #9ffa8e; box-shadow: 0 6px 20px rgba(15,28,46,0.12), 0 0 0 5px rgba(159,250,142,0.14), inset 0 1px 0 rgba(255,255,255,1); transform: scale(1.10); }
+    .s06-step.s06-active .s06-num { background: #9ffa8e; color: #0f1c2e; }
+    .s06-step.s06-passed .s06-circle svg { stroke: #D97757; }
+    .s06-step.s06-passed .s06-num { background: #D97757; }
+    .s06-step.s06-winner .s06-circle { background: #9ffa8e; border-color: #9ffa8e; box-shadow: 0 8px 28px rgba(159,250,142,0.45), 0 0 0 8px rgba(159,250,142,0.14), 0 0 0 18px rgba(159,250,142,0.06), inset 0 1px 0 rgba(255,255,255,0.6); transform: scale(1.12); animation: s06WinnerPulse 2.4s ease-in-out infinite; }
+    .s06-step.s06-winner .s06-circle svg { stroke: #0f1c2e; }
+    .s06-step.s06-winner .s06-num { background: #D97757; color: #fff; }
+    @keyframes s06WinnerPulse {
+      0%,100% { box-shadow: 0 8px 28px rgba(159,250,142,0.45), 0 0 0 8px rgba(159,250,142,0.14), 0 0 0 18px rgba(159,250,142,0.06), inset 0 1px 0 rgba(255,255,255,0.6); }
+      50%      { box-shadow: 0 10px 36px rgba(159,250,142,0.55), 0 0 0 14px rgba(159,250,142,0.18), 0 0 0 26px rgba(159,250,142,0.08), inset 0 1px 0 rgba(255,255,255,0.6); }
+    }
   </style>
 </head>
 
@@ -1927,6 +2232,21 @@
     }
 
     function Hero() {
+      const roles = ['Asset Managers', 'Property Managers'];
+      const [roleIdx, setRoleIdx] = useState(0);
+      const [visible, setVisible] = useState(true);
+
+      useEffect(() => {
+        const id = setInterval(() => {
+          setVisible(false);
+          setTimeout(() => {
+            setRoleIdx(i => (i + 1) % roles.length);
+            setVisible(true);
+          }, 400);
+        }, 3000);
+        return () => clearInterval(id);
+      }, []);
+
       return (
         <section className="relative w-full overflow-hidden text-black border-b border-[#0f1c2e]/5" style={{ minHeight: 'calc(70vh + 64px)', marginTop: '-64px' }}>
           <div className="hero-bg" aria-hidden="true"></div>
@@ -1934,13 +2254,21 @@
           <div className="relative z-10 flex flex-col h-full">
             <div className="px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-center pt-48 pb-16">
               <div className="max-w-7xl mx-auto w-full">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-4 items-center">
                   <div className="max-w-3xl">
                     <h1
-                      className="text-xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-normal mb-4"
+                      className="text-xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-normal mb-4"
                       style={{ letterSpacing: "-0.04em", lineHeight: 1.1 }}
                     >
-                      The AI platform for Building Financial Intelligence.
+                      The Financial Operating System for
+                      <br />
+                      <span className="hero-role" style={{
+                        opacity: visible ? 1 : 0,
+                        transform: visible ? 'translateY(0)' : 'translateY(8px)',
+                        transition: 'opacity 0.35s ease, transform 0.35s ease',
+                      }}>
+                        {roles[roleIdx]}.
+                      </span>
                     </h1>
 
                     <FadeIn delay={800} duration={1000}>
@@ -2184,7 +2512,8 @@
 
       useEffect(() => {
         const id = setInterval(() => setActiveCard(a => (a + 1) % 4), 2400);
-        return () => clearInterval(id);
+        const stopId = setTimeout(() => clearInterval(id), 9600);
+        return () => { clearInterval(id); clearTimeout(stopId); };
       }, []);
 
       useEffect(() => {
@@ -2208,8 +2537,8 @@
           .scale(580).translate([width / 2, height / 2 + 60]);
         const path = d3.geoPath(projection);
 
-        const usFips = ["36","12","06","48","17","53","08","04","25","42","41","34","27","09","24","51","37"];
-        const canNames = ["Ontario","British Columbia","Alberta","Quebec","Manitoba","Saskatchewan","Nova Scotia","New Brunswick"];
+        const usFips = ["36", "12", "06", "48", "17", "53", "08", "04", "25", "42", "41", "34", "27", "09", "24", "51", "37"];
+        const canNames = ["Ontario", "British Columbia", "Alberta", "Quebec", "Manitoba", "Saskatchewan", "Nova Scotia", "New Brunswick"];
 
         Promise.all([
           d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json'),
@@ -2258,25 +2587,25 @@
           name: 'Board package',
           sub: 'Board of directors · Annual meeting',
           iconBg: '#EEF2FF', iconColor: '#4F46E5',
-          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2h-3"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>,
+          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="2" width="6" height="4" rx="1" /><path d="M9 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2h-3" /><line x1="9" y1="12" x2="15" y2="12" /><line x1="9" y1="16" x2="13" y2="16" /></svg>,
         },
         {
           name: 'Lender report',
           sub: 'CMHC · Fannie Mae · Freddie Mac',
           iconBg: '#FEF3C7', iconColor: '#D97706',
-          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
+          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>,
         },
         {
           name: 'Insurance submission',
           sub: 'Insurers · Premium negotiation',
           iconBg: '#DCFCE7', iconColor: '#16A34A',
-          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>,
+          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></svg>,
         },
         {
           name: 'Compliance certificate',
           sub: 'Condo authority · Regulators',
           iconBg: '#F3E8FF', iconColor: '#9333EA',
-          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><polyline points="9 12 11 14 15 10"/></svg>,
+          icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="3" /><polyline points="9 12 11 14 15 10" /></svg>,
         },
       ];
 
@@ -2305,6 +2634,139 @@
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      );
+    }
+
+    function Step06Animation() {
+      const STEPS = [
+        {
+          label: 'Identify Repairs', sub: 'From reserve study',
+          icon: <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" /><rect x="9" y="3" width="6" height="4" rx="1.5" /><path d="m9 14 2 2 4-4" /></svg>
+        },
+        {
+          label: 'Post Project', sub: 'To marketplace',
+          icon: <svg viewBox="0 0 24 24"><path d="M22 2 11 13" /><path d="m22 2-7 20-4-9-9-4 20-7z" /></svg>
+        },
+        {
+          label: 'Automated RFP', sub: 'REcollab AI',
+          icon: <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="M9 13h6" /><path d="M9 17h4" /></svg>
+        },
+        {
+          label: 'Match Engineers', sub: 'Validated marketplace',
+          icon: <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
+        },
+        {
+          label: 'Receive Bids', sub: 'Competitive',
+          icon: <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /><line x1="12" y1="12" x2="12" y2="16" /><line x1="10" y1="14" x2="14" y2="14" /></svg>
+        },
+        {
+          label: 'Select Winner', sub: '15–20% savings', winner: true,
+          icon: <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></svg>
+        },
+      ];
+
+      const [revealed, setRevealed] = useState(0);
+      const [activeIdx, setActiveIdx] = useState(-1);
+
+      useEffect(() => {
+        const timeouts = [];
+        const addT = (fn, d) => { const id = setTimeout(fn, d); timeouts.push(id); };
+        let delay = 400;
+        for (let i = 0; i < STEPS.length; i++) {
+          ((idx) => addT(() => { setRevealed(idx + 1); setActiveIdx(idx); }, delay))(i);
+          delay += i === STEPS.length - 1 ? 1400 : 800;
+        }
+        addT(() => setActiveIdx(STEPS.length - 1), delay + 500);
+        return () => timeouts.forEach(clearTimeout);
+      }, []);
+
+      const getState = (i) => {
+        if (i >= revealed) return 'hidden';
+        if (i < activeIdx) return 'passed';
+        if (i === activeIdx) return STEPS[i].winner ? 'winner' : 'active';
+        return 'vis';
+      };
+
+      return (
+        <div className="s06-stage">
+          <div className="s06-track">
+            {STEPS.map((step, i) => {
+              const state = getState(i);
+              const lit = i < revealed && i <= activeIdx;
+              return (
+                <React.Fragment key={i}>
+                  {i > 0 && (
+                    <div className={`s06-conn${i <= revealed ? ' s06-conn-vis' : ''}${lit ? ' s06-lit' : ''}`}>
+                      <div className={`s06-fill${lit ? ' s06-lit' : ''}`}></div>
+                    </div>
+                  )}
+                  <div className={`s06-step${state !== 'hidden' ? ' s06-vis' : ''}${state === 'active' ? ' s06-active' : ''}${state === 'passed' ? ' s06-passed' : ''}${state === 'winner' ? ' s06-winner' : ''}`}>
+                    <div className="s06-circle">
+                      <span className="s06-num">{i + 1}</span>
+                      {step.icon}
+                    </div>
+                    <div className="s06-lbl"><strong>{step.label}</strong></div>
+                  </div>
+                </React.Fragment>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    function Step05Animation() {
+      const nodes = [
+        { name: 'Yardi', logo: 'assets/Yardi-Systems-Logo.png', top: '12%', left: '50%' },
+        { name: 'AppFolio', logo: 'assets/AppFolio,_Inc._Wordmark,_2021.svg.png', top: '23%', left: '77%' },
+        { name: 'QuickBooks', logo: 'assets/quickbooks-2.svg', top: '50%', left: '88%' },
+        { name: 'RSMeans', logo: 'assets/rsmeans.png', top: '77%', left: '77%' },
+        { name: 'Chubb', logo: 'assets/CHUBB_Logo_Black_RBG.png', top: '88%', left: '50%' },
+        { name: 'Aviva', logo: 'assets/aviva-1-logo-png-transparent.png', top: '77%', left: '23%' },
+        { name: 'Buildium', logo: 'assets/buildium.png', top: '50%', left: '12%' },
+        { name: 'Stripe', logo: 'assets/Stripe_Logo,_revised_2016.svg.png', top: '23%', left: '23%' },
+      ];
+      const lines = [
+        [50, 12, 50, 50], [77, 23, 50, 50], [88, 50, 50, 50], [77, 77, 50, 50],
+        [50, 88, 50, 50], [23, 77, 50, 50], [12, 50, 50, 50], [23, 23, 50, 50],
+      ];
+      const dots = [
+        { sx: 50, sy: 16, ex: 50, ey: 48, delay: '0s' },
+        { sx: 75, sy: 25, ex: 52, ey: 48, delay: '0.4s' },
+        { sx: 84, sy: 50, ex: 52, ey: 50, delay: '0.8s' },
+        { sx: 75, sy: 75, ex: 52, ey: 52, delay: '1.2s' },
+        { sx: 50, sy: 84, ex: 50, ey: 52, delay: '1.6s' },
+        { sx: 25, sy: 75, ex: 48, ey: 52, delay: '2s' },
+        { sx: 16, sy: 50, ex: 48, ey: 50, delay: '2.4s' },
+        { sx: 25, sy: 25, ex: 48, ey: 48, delay: '2.8s' },
+      ];
+      return (
+        <div className="s05-stage">
+          <div className="s05-hub">
+            <div className="s05-orbit-glow"></div>
+            <div className="s05-orbit-ring"></div>
+            <svg className="s05-flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+              {lines.map(([x1, y1, x2, y2], i) => (
+                <line key={i} className="s05-flow-line" x1={x1} y1={y1} x2={x2} y2={y2} />
+              ))}
+              {dots.map((d, i) => (
+                <circle key={i} r="0.5" fill="#D97757">
+                  <animate attributeName="cx" values={`${d.sx};${d.ex}`} dur="3s" begin={d.delay} repeatCount="2" />
+                  <animate attributeName="cy" values={`${d.sy};${d.ey}`} dur="3s" begin={d.delay} repeatCount="2" />
+                  <animate attributeName="opacity" values="0;1;1;0" dur="3s" begin={d.delay} repeatCount="2" />
+                </circle>
+              ))}
+            </svg>
+            <div className="s05-center">
+              <img src="assets/REcollab_black_logo.png" alt="REcollab" style={{ width: '65%', height: '65%', objectFit: 'contain' }} />
+            </div>
+            {nodes.map(n => (
+              <div key={n.name} className="s05-node" style={{ top: n.top, left: n.left }}>
+                <img src={n.logo} alt={n.name} style={{ width: '72%', height: '72%', objectFit: 'contain' }} />
+              </div>
+            ))}
           </div>
         </div>
       );
@@ -2372,7 +2834,7 @@
           let i = 0;
           const nextLine = () => {
             if (!running) return;
-            if (i >= LINES.length) { addTimeout(runLoop, LOOP_PAUSE); return; }
+            if (i >= LINES.length) { return; }
             const d = LINES[i];
             const div = document.createElement('div');
             div.className = `s02-log-line s02-${d.cls}`;
@@ -2508,6 +2970,7 @@
     function Step03Animation() {
       const containerRef = useRef(null);
       const recommendationText = "Increase the contributions by 18% to meet Fannie Mae requirements and avoid special assessments.";
+      const recommendationPrefix = "RECOMMENDATION: ";
       const [typedRecommendation, setTypedRecommendation] = useState("");
 
       useEffect(() => {
@@ -2542,7 +3005,7 @@
               clearInterval(intervalId);
             }
           }, 22);
-        }, 2400);
+        }, 2780);
 
         return () => {
           clearTimeout(startDelay);
@@ -2622,12 +3085,13 @@
           </div>
 
           <div className="db-card c4">
-            <div className="db-lbl">Recommendation</div>
             <div className="db-desc" style={{ color: '#E2E8F0', fontWeight: 500, fontSize: '12px' }}>
+              <span style={{ color: '#9ffa8e', fontWeight: 700, letterSpacing: '0.06em' }}>RECOMMENDATION:</span>
+              {' '}
               {typedRecommendation.includes("18%") ? (
                 <>
                   {typedRecommendation.split("18%")[0]}
-                  <span style={{ color: '#16a34a', fontWeight: 700 }}>18%</span>
+                  <span style={{ color: '#9ffa8e', fontWeight: 700 }}>18%</span>
                   {typedRecommendation.split("18%").slice(1).join("18%")}
                 </>
               ) : (
@@ -2696,7 +3160,8 @@
       const current = steps[active];
 
       useEffect(() => {
-        const duration = active === 0 ? 12000 : active === 1 ? 14000 : 8000;
+        const animDurations = [12000, 10000, 5000, 9600, 9000, 5500];
+        const duration = (animDurations[active] ?? 8000) + 4000;
         const id = setTimeout(() => {
           setActive((a) => (a + 1) % steps.length);
           setTick((t) => t + 1);
@@ -2804,6 +3269,14 @@
                   ) : active === 3 ? (
                     <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
                       <Step04Animation />
+                    </div>
+                  ) : active === 4 ? (
+                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
+                      <Step05Animation />
+                    </div>
+                  ) : active === 5 ? (
+                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
+                      <Step06Animation />
                     </div>
                   ) : (
                     <div className="md:col-span-3 bg-transparent p-10 flex items-center justify-center">
@@ -3038,18 +3511,14 @@
                   RECOStudy™
                 </h2>
 
-                {/* Image slider placeholder */}
+                {/* Image slider */}
                 <div className="relative liquid-glass rounded-2xl overflow-hidden" style={{ aspectRatio: '16/10', border: '1px solid #9ffa8e' }}>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 select-none">
-                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.12 }}>
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <circle cx="9" cy="9" r="2" />
-                      <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-                    </svg>
-                    <span style={{ color: '#0f1c2e', fontSize: 10, letterSpacing: '0.14em', fontWeight: 500, textTransform: 'uppercase' }}>
-                      Slide {slideIdx + 1} of {TOTAL}
-                    </span>
-                  </div>
+                  <img
+                    key={slideIdx}
+                    src={`assets/image-${slideIdx + 1}.png`}
+                    alt={`RECOStudy screenshot ${slideIdx + 1}`}
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top right' }}
+                  />
 
                   <button onClick={prev} aria-label="Previous slide"
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/60 backdrop-blur border border-white/80 flex items-center justify-center hover:bg-white/90 transition-colors"
