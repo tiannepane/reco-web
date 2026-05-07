@@ -454,6 +454,13 @@
       align-items: center;
     }
 
+    .l-center {
+      box-sizing: content-box;
+      max-width: 72rem;
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
     .hero-col-main,
     .hero-col-chat {
       flex-basis: calc((52rem - 100%) * 999);
@@ -612,8 +619,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
+      font-size: 14px;
+      font-weight: 400;
       color: #0F172A;
       box-shadow: 0 3px 10px rgba(15, 28, 46, .10), 0 1px 2px rgba(15, 28, 46, .06);
       border: 1px solid rgba(15, 28, 46, .06);
@@ -717,7 +724,7 @@
 
     .s01-input-header,
     .s01-output-header {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.14em;
@@ -740,7 +747,7 @@
       border: 1px solid rgba(15, 28, 46, 0.08);
       border-radius: 7px;
       padding: 7px 10px;
-      font-size: 11px;
+      font-size: 13px;
       color: #0F172A;
       display: flex;
       align-items: center;
@@ -824,7 +831,7 @@
     .s01-label {
       position: absolute;
       bottom: 14px;
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.14em;
@@ -910,7 +917,7 @@
     }
 
     .s02-panel-label {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.14em;
@@ -967,7 +974,7 @@
 
     .s02-log-line {
       font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1.4;
       color: #0F172A;
       padding: 6px 9px;
@@ -1010,7 +1017,7 @@
 
     .s02-tag {
       font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1074,7 +1081,7 @@
     }
 
     .s02-category-title {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       color: #0F172A;
       display: flex;
@@ -1087,7 +1094,7 @@
       border-left: 3px solid;
       border-radius: 0 5px 5px 0;
       padding: 7px 11px;
-      font-size: 11px;
+      font-size: 13px;
       color: #0F172A;
       line-height: 1.4;
     }
@@ -1096,11 +1103,11 @@
       font-weight: 600;
       display: block;
       margin-bottom: 2px;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .s02-detail {
-      font-size: 10.5px;
+      font-size: 9px;
       color: #475569;
       line-height: 1.35;
       display: block;
@@ -1406,7 +1413,7 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.07em;
       text-transform: uppercase;
@@ -1476,7 +1483,7 @@
     }
 
     .db-yr-sub {
-      font-size: 10px;
+      font-size: 12px;
       color: #94A3B8;
       margin-bottom: 9px;
     }
@@ -1488,7 +1495,7 @@
     }
 
     .db-desc {
-      font-size: 11px;
+      font-size: 13px;
       color: #475569;
       line-height: 1.56;
     }
@@ -1496,7 +1503,7 @@
     .db-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 10px;
+      font-size: 12px;
       color: #94A3B8;
       margin: 5px 0 2px;
     }
@@ -1526,9 +1533,21 @@
 
     .s04-map-panel {
       flex: 1;
-      position: relative;
       min-height: 0;
+      padding: 16px 16px 8px 16px;
+      display: flex;
+    }
+
+    .s04-map-glass {
+      flex: 1;
+      position: relative;
       overflow: hidden;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(10px) saturate(160%);
+      -webkit-backdrop-filter: blur(10px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.75);
     }
 
     .s04-map-stat {
@@ -1563,14 +1582,14 @@
     }
 
     .s04-cr-list>div {
-      font-size: 10px;
+      font-size: 12px;
       color: #64748B;
       line-height: 1.5;
       text-align: right;
     }
 
     .s04-lbl {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .14em;
@@ -1632,7 +1651,7 @@
     }
 
     .s04-cn {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
       color: #0F172A;
       white-space: nowrap;
@@ -1641,7 +1660,7 @@
 
     .s04-note {
       margin-top: auto;
-      font-size: 10px;
+      font-size: 12px;
       color: #64748B;
       padding: 8px 0 0;
       border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -1655,7 +1674,7 @@
     }
 
     .s04-nunit {
-      font-size: 12px;
+      font-size: 14px;
       color: #475569;
       margin-left: 6px;
       font-weight: 500;
@@ -1755,7 +1774,7 @@
       width: 22%;
       aspect-ratio: 1/1;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.45);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 1.5px solid #9ffa8e;
@@ -1859,6 +1878,22 @@
       padding: 24px 36px;
       position: relative;
       overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .s06-glass {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(10px) saturate(160%);
+      -webkit-backdrop-filter: blur(10px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .s06-track {
@@ -1976,14 +2011,14 @@
     }
 
     .s06-lbl {
-      margin-top: 8px;
+      margin-top: 18px;
       text-align: center;
       padding: 0 2px;
     }
 
     .s06-lbl strong {
       display: block;
-      font-size: clamp(7px, 0.9vw, 10px);
+      font-size: 14px;
       font-weight: 600;
       color: #0f1c2e;
       line-height: 1.3;
@@ -2406,7 +2441,7 @@
 
       return (
         <div className="hero-chat-stage">
-          <div className="h-full w-full flex flex-col justify-end">
+          <div className="h-full w-full flex flex-col justify-start">
             {index > 0 && renderRow(prev, "prev", true)}
 
             {isTyping ? (
@@ -2501,31 +2536,21 @@
                         </span>
                       </h1>
 
-                      <FadeIn delay={800} duration={1000}>
-                        <p className="text-base md:text-lg text-[#0f1c2e] mb-5 max-w-xl">
-                          Secure your building's future through intelligence. Upload any file format and REcollab plans your maintenance and funding journey.
-                        </p>
-                      </FadeIn>
+                      <p className="text-base md:text-lg text-[#0f1c2e] mb-5 max-w-xl">
+                        Secure your building's future through intelligence. Upload any file format and REcollab plans your maintenance and funding journey.
+                      </p>
 
-                      <FadeIn delay={1200} duration={1000}>
-                        <div className="flex flex-wrap gap-4">
-                          <a href="book-a-demo.html" className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-black/80 transition-colors">
-                            Book a Demo
-                          </a>
-                        </div>
-                      </FadeIn>
+                      <div className="flex flex-wrap gap-4">
+                        <a href="book-a-demo.html" className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-black/80 transition-colors">
+                          Book a Demo
+                        </a>
+                      </div>
                     </div>
                   </div>{/* /hero-col-main */}
 
-                  {/*
-                    ── CHANGE 4: className="hero-col-chat" on the FadeIn wrapper ──
-                    This gives the chat animation flex-grow:2 (2/5 of available
-                    space when side-by-side) and flex-basis from the Switcher calc.
-                    When stacked on mobile it becomes full-width automatically.
-                  */}
-                  <FadeIn delay={900} duration={900} className="hero-col-chat">
+                  <div className="hero-col-chat">
                     <HeroChatAnimation />
-                  </FadeIn>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2539,7 +2564,7 @@
       const [videoLoaded, setVideoLoaded] = useState(false);
       return (
         <section
-          className="relative py-14 px-6 overflow-hidden"
+          className="relative py-14 overflow-hidden"
           style={{ background: '#F3F4F6', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}
         >
           <div
@@ -2554,7 +2579,7 @@
               pointerEvents: 'none',
             }}
           />
-          <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="relative z-10 l-center">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
               {/* Left column: text */}
@@ -2659,8 +2684,8 @@
       ];
 
       return (
-        <section className="py-24 px-6">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-24">
+          <div className="l-center">
             <div className="compare-section">
 
               {/* Header */}
@@ -2846,6 +2871,7 @@
       return (
         <div className="s04-stage">
           <div className="s04-map-panel">
+            <div className="s04-map-glass">
             <div className="s04-mapwrap" ref={mapRef}></div>
             <div className="s04-map-stat">
               <div className="s04-lbl">Compliance</div>
@@ -2854,7 +2880,8 @@
                 <span className="s04-nunit" style={{ marginLeft: 0, marginTop: 4 }}>active jurisdictions</span>
               </div>
             </div>
-          </div>
+            </div>{/* /s04-map-glass */}
+          </div>{/* /s04-map-panel */}
           <div className="s04-cards-panel">
             <div className="s04-lbl"><span className="s04-livdot"></span>Report generation</div>
             <div className="s04-cards-grid">
@@ -2925,6 +2952,7 @@
 
       return (
         <div className="s06-stage">
+          <div className="s06-glass">
           <div className="s06-track">
             {STEPS.map((step, i) => {
               const state = getState(i);
@@ -2946,6 +2974,7 @@
                 </React.Fragment>
               );
             })}
+          </div>
           </div>
         </div>
       );
@@ -3319,7 +3348,7 @@
           </div>
 
           <div className="db-card c4">
-            <div className="db-desc" style={{ color: '#E2E8F0', fontWeight: 500, fontSize: '12px' }}>
+            <div className="db-desc" style={{ color: '#E2E8F0', fontWeight: 500, fontSize: '15px' }}>
               <span style={{ color: '#9ffa8e', fontWeight: 700, letterSpacing: '0.06em' }}>RECOMMENDATION:</span>
               {' '}
               {typedRecommendation.includes("18%") ? (
@@ -3345,6 +3374,8 @@
           overflow: 'hidden',
           position: 'relative',
           width: '100%',
+          maxWidth: `${w}px`,
+          marginInline: 'auto',
         }}>
           <div style={{
             position: 'absolute',
@@ -3469,8 +3500,8 @@
       ];
 
       return (
-        <section className="py-24 px-6">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24">
+          <div className="l-center">
             <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-3">
               How It Works
             </div>
@@ -3602,8 +3633,8 @@
       const [openIdx, setOpenIdx] = useState(0);
 
       return (
-        <section className="py-24 px-6" style={{ background: "radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 90%), radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 80%), #f5f7fa" }}>
-          <div className="max-w-6xl mx-auto">
+        <section className="py-24" style={{ background: "radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 90%), radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 80%), #f5f7fa" }}>
+          <div className="l-center">
             <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-3">
               FAQ
             </div>
@@ -3667,8 +3698,8 @@
       ];
 
       return (
-        <section className="w-full py-12 px-6" style={{ background: '#f2f2f2', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
-          <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+        <section className="w-full py-12" style={{ background: '#f2f2f2', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
+          <div className="l-center flex flex-col items-center text-center">
             <h2
               className="text-2xl md:text-3xl font-normal text-[#0f1c2e] mb-6 whitespace-nowrap"
               style={{ letterSpacing: "-0.04em", lineHeight: 1.1 }}
@@ -3736,8 +3767,8 @@
       const next = () => setSlideIdx(i => (i + 1) % TOTAL);
 
       return (
-        <section className="py-24 px-6" style={{ background: '#080f2a', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24" style={{ background: '#080f2a', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
+          <div className="l-center">
             <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-10 lg:gap-14 items-center">
 
               {/* Left: label + title + image slider */}
@@ -3844,8 +3875,8 @@
       ];
 
       return (
-        <section className="py-24 px-6">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-24">
+          <div className="l-center">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
               {/* Left: text block */}
