@@ -96,7 +96,6 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const items = [
     { label: "Core Product", href: "core-product.html" },
-    { label: "Free Tier", href: "#" },
     { label: "Case Studies", href: "case-studies.html" },
     { label: "About", href: "About.html" },
   ];
@@ -113,9 +112,9 @@ function Navbar() {
             </a>
           ))}
         </div>
-        <button className="hidden md:block bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
+        <a href="book-a-demo.html" className="hidden md:block bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
           Book a Demo
-        </button>
+        </a>
         <button className="md:hidden p-2 text-[#0f1c2e]" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
           {open
             ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -130,9 +129,9 @@ function Navbar() {
               {item.label}
             </a>
           ))}
-          <button className="mt-4 w-full bg-black text-white px-6 py-3 rounded-lg text-sm font-medium">
+          <a href="book-a-demo.html" className="mt-4 w-full bg-black text-white px-6 py-3 rounded-lg text-sm font-medium text-center block">
             Book a Demo
-          </button>
+          </a>
         </div>
       )}
     </div>
@@ -175,7 +174,9 @@ function CaseStudyImage() {
   return (
     <section className="px-6 mb-16">
       <div className="max-w-6xl mx-auto">
-        <div className="w-full rounded-2xl bg-black" style={{ aspectRatio: '16/7' }} />
+        <div className="w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '931/768' }}>
+            <img src="assets/case1.avif" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
       </div>
     </section>
   );
@@ -257,22 +258,18 @@ function Outcomes() {
 
 function BottomCTA() {
   return (
-    <section className="py-24 px-6" style={{ background: 'radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 50%), radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%), #f5f7fa' }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-4">Get Started</div>
-        <h2 className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-2xl mb-4" style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}>
-          Start planning smarter.
+    <section className="w-full py-12 px-6" style={{ background: '#f2f2f2', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
+      <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+        <h2 className="text-2xl md:text-3xl font-normal text-[#0f1c2e] mb-6 whitespace-nowrap" style={{ letterSpacing: "-0.04em", lineHeight: 1.1 }}>
+          Secure Your Building's Future.
         </h2>
-        <p className="text-[#0f1c2e] text-sm max-w-xl mb-8">
+        <p className="text-[#0f1c2e] text-base mb-10 max-w-lg">
           Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
         </p>
-        <div className="flex gap-4 flex-wrap">
-          <button className="bg-white text-[#0f1c2e] rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors border border-black/10">
-            Start for Free
-          </button>
-          <button className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
+        <div className="flex gap-4 flex-wrap justify-center">
+          <a href="book-a-demo.html" className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
             Book a Demo
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -282,10 +279,9 @@ function BottomCTA() {
 function Footer() {
   const links = [
     { label: "Product", href: "index.html" },
-    { label: "Free Tier", href: "#" },
     { label: "Case Studies", href: "case-studies.html" },
     { label: "About", href: "About.html" },
-    { label: "Book a Demo", href: "#" },
+    { label: "Book a Demo", href: "book-a-demo.html" },
   ];
   return (
     <footer className="w-full bg-[#0f1c2e] py-8 px-6">

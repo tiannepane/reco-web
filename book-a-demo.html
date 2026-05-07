@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Demo — REcollab</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } },
+  };
+</script>
+
+<style>
+  html, body {
+    margin: 0; padding: 0; min-height: 100%; color: #0f1c2e;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:
+      radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%),
+      #f5f7fa;
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-bg::before,
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background-image:
+      repeating-linear-gradient(100deg,
+        rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 7%, rgba(255,255,255,0) 12%, rgba(255,255,255,0) 16%),
+      repeating-linear-gradient(100deg,
+        #3b82f6 10%, #818cf8 15%, #60a5fa 20%, #a5b4fc 25%, #4f7cff 30%);
+    background-size: 300% 200%, 200% 100%;
+    background-position: 50% 50%, 50% 50%;
+    filter: blur(24px);
+    opacity: 0.55;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse at 100% 0%, black 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse at 100% 0%, black 20%, transparent 75%);
+  }
+  .hero-bg::after {
+    background-size: 200% 100%;
+    animation: aurora 60s linear infinite;
+    mix-blend-mode: multiply;
+  }
+  @keyframes aurora {
+    from { background-position: 50% 50%, 50% 50%; }
+    to   { background-position: 350% 50%, 350% 50%; }
+  }
+
+  #root { position: relative; z-index: 1; }
+
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.38);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 6px 16px rgba(15, 23, 42, 0.08),
+      0 24px 48px -12px rgba(15, 23, 42, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(15, 23, 42, 0.05);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.2px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.95) 0%,
+      rgba(255,255,255,0.45) 18%,
+      rgba(255,255,255,0.08) 42%,
+      rgba(255,255,255,0.08) 58%,
+      rgba(255,255,255,0.45) 82%,
+      rgba(255,255,255,0.95) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .liquid-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.12) 18%,
+      rgba(255,255,255,0) 45%);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+  }
+  .liquid-glass > * { position: relative; z-index: 1; }
+
+  .form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #0f1c2e;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+  }
+  .form-input::placeholder { color: rgba(15, 28, 46, 0.35); }
+  .form-input:focus {
+    border-color: #9ffa8e;
+    box-shadow: 0 0 0 3px rgba(159, 250, 142, 0.2);
+  }
+  textarea.form-input { resize: vertical; min-height: 140px; }
+
+  .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f1c2e;
+    margin-bottom: 6px;
+    letter-spacing: 0;
+  }
+  .form-label span { color: #D97757; }
+</style>
+</head>
+<body>
+
+<div class="hero-bg"></div>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="env,react">
+const { useState } = React;
+
+function Navbar() {
+  const [open, setOpen] = useState(false);
+  const items = [
+    { label: "Core Product", href: "core-product.html" },
+    { label: "Case Studies", href: "case-studies.html" },
+    { label: "About", href: "About.html" },
+  ];
+  return (
+    <div className="sticky top-0 z-50 w-full liquid-glass" style={{ borderRadius: 0 }}>
+      <div className="px-6 md:px-12 lg:px-16 py-3 flex items-center justify-between">
+        <a href="index.html" className="text-2xl font-semibold text-black shrink-0" style={{ letterSpacing: "-0.04em" }} aria-label="REcollab home">
+          REcollab
+        </a>
+        <div className="hidden md:flex items-center gap-8">
+          {items.map((item) => (
+            <a key={item.label} href={item.href} className="text-sm text-black hover:text-black transition-colors">
+              {item.label}
+            </a>
+          ))}
+        </div>
+        <button className="hidden md:block bg-black text-white px-6 py-2 rounded-lg text-sm font-medium">
+          Book a Demo
+        </button>
+        <button className="md:hidden p-2 text-[#0f1c2e]" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
+          {open
+            ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          }
+        </button>
+      </div>
+      {open && (
+        <div className="md:hidden px-6 pb-5 flex flex-col" style={{ borderTop: '1px solid rgba(255,255,255,0.3)' }}>
+          {items.map((item) => (
+            <a key={item.label} href={item.href} className="text-sm text-[#0f1c2e] py-3" style={{ borderBottom: '1px solid rgba(15,28,46,0.06)' }}>
+              {item.label}
+            </a>
+          ))}
+          <button className="mt-4 w-full bg-black text-white px-6 py-3 rounded-lg text-sm font-medium">
+            Book a Demo
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BookADemo() {
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <section className="pt-32 pb-24 px-6">
+      <div className="max-w-2xl mx-auto">
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="text-[#0f1c2e] tracking-widest text-xs font-medium uppercase mb-4">
+            Get in Touch
+          </div>
+          <h1
+            className="text-4xl md:text-5xl font-normal text-[#0f1c2e] mb-4"
+            style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
+          >
+            Book a Demo
+          </h1>
+          <p className="text-[#0f1c2e] text-sm leading-relaxed max-w-sm mx-auto" style={{ opacity: 0.65 }}>
+            See how REcollab can transform your building's financial planning. We'll walk you through the platform live.
+          </p>
+        </div>
+
+        {/* Glass card */}
+        <div className="liquid-glass rounded-2xl p-8 md:p-10">
+          {submitted ? (
+            <div className="flex flex-col items-center text-center py-8">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center mb-5" style={{ background: 'rgba(159,250,142,0.18)', border: '1.5px solid #9ffa8e' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <h2 className="text-xl font-semibold text-[#0f1c2e] mb-2" style={{ letterSpacing: "-0.02em" }}>
+                We'll be in touch soon.
+              </h2>
+              <p className="text-sm text-[#0f1c2e]" style={{ opacity: 0.6 }}>
+                Thanks for reaching out. Our team typically responds within one business day.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="form-label">First Name <span>*</span></label>
+                  <input className="form-input" type="text" placeholder="Your first name" value={form.firstName} onChange={set('firstName')} required />
+                </div>
+                <div>
+                  <label className="form-label">Last Name</label>
+                  <input className="form-input" type="text" placeholder="Your last name" value={form.lastName} onChange={set('lastName')} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="form-label">Email <span>*</span></label>
+                  <input className="form-input" type="email" placeholder="you@company.com" value={form.email} onChange={set('email')} required />
+                </div>
+                <div>
+                  <label className="form-label">Phone Number <span>*</span></label>
+                  <input className="form-input" type="tel" placeholder="+1 (000) 000-0000" value={form.phone} onChange={set('phone')} required />
+                </div>
+              </div>
+
+              <div>
+                <label className="form-label">Subject</label>
+                <input className="form-input" type="text" placeholder="e.g. Reserve fund planning for 40-unit condo" value={form.subject} onChange={set('subject')} />
+              </div>
+
+              <div>
+                <label className="form-label">Message <span>*</span></label>
+                <textarea className="form-input" placeholder="Tell us about your building and what you're looking to solve..." value={form.message} onChange={set('message')} required />
+              </div>
+
+              <div className="flex items-center justify-between gap-4 flex-wrap pt-2">
+                <p className="text-xs text-[#0f1c2e]" style={{ opacity: 0.45 }}>
+                  <span style={{ color: '#D97757' }}>*</span> Required fields
+                </p>
+                <button
+                  type="submit"
+                  className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  const links = [
+    { label: "Product", href: "index.html" },
+    { label: "Case Studies", href: "case-studies.html" },
+    { label: "About", href: "About.html" },
+    { label: "Book a Demo", href: "book-a-demo.html" },
+  ];
+  return (
+    <footer className="w-full bg-[#0f1c2e] py-8 px-6">
+      <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
+        <div className="flex items-center gap-2.5">
+          <img src="assets/recollab-logo.png" alt="REcollab" className="w-6 h-6" style={{ filter: "invert(1) brightness(2)" }} />
+          <span className="text-white font-bold text-sm">REcollab</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:flex-nowrap md:gap-8">
+          {links.map((l) => (
+            <a key={l.label} href={l.href} className="text-white hover:text-white transition-colors text-xs">
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="text-white text-xs">
+          © 2025 REcollab Technologies, Inc.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Navbar />
+      <BookADemo />
+      <Footer />
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+
+</body>
+</html>

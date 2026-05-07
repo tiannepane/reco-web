@@ -1,390 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RECOStudy™ — Core Product | REcollab</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RECOStudy™ — Core Product | REcollab</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } },
-  };
-</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } },
+    };
+  </script>
 
-<style>
-  html, body {
-    margin: 0; padding: 0; min-height: 100%; color: #0f1c2e;
-  }
-  body {
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background:
-      radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%),
-      #f5f7fa;
-    background-attachment: fixed;
-    overflow-x: hidden;
-  }
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      color: #0f1c2e;
+    }
 
-  .liquid-glass {
-    background: rgba(255, 255, 255, 0.38);
-    background-blend-mode: luminosity;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow:
-      0 1px 2px rgba(15, 23, 42, 0.04),
-      0 6px 16px rgba(15, 23, 42, 0.08),
-      0 24px 48px -12px rgba(15, 23, 42, 0.18),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9),
-      inset 0 -1px 0 rgba(15, 23, 42, 0.05);
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-  }
-  .liquid-glass::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1.2px;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.95) 0%,
-      rgba(255,255,255,0.45) 18%,
-      rgba(255,255,255,0.08) 42%,
-      rgba(255,255,255,0.08) 58%,
-      rgba(255,255,255,0.45) 82%,
-      rgba(255,255,255,0.95) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    pointer-events: none;
-  }
-  .liquid-glass::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(180deg,
-      rgba(255,255,255,0.55) 0%,
-      rgba(255,255,255,0.12) 18%,
-      rgba(255,255,255,0) 45%);
-    pointer-events: none;
-    mix-blend-mode: overlay;
-    opacity: 0.9;
-  }
-  .liquid-glass > * { position: relative; z-index: 1; }
-</style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background:
+        radial-gradient(ellipse at 20% 0%, #dce8ff 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 10%, #e8f0ff 0%, transparent 40%),
+        #f5f7fa;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.38);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 6px 16px rgba(15, 23, 42, 0.08),
+        0 24px 48px -12px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(15, 23, 42, 0.05);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.2px;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.45) 18%,
+          rgba(255, 255, 255, 0.08) 42%,
+          rgba(255, 255, 255, 0.08) 58%,
+          rgba(255, 255, 255, 0.45) 82%,
+          rgba(255, 255, 255, 0.95) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .liquid-glass::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.55) 0%,
+          rgba(255, 255, 255, 0.12) 18%,
+          rgba(255, 255, 255, 0) 45%);
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      opacity: 0.9;
+    }
+
+    .liquid-glass>* {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="root"></div>
+  <div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+    integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+    integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+    integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+    crossorigin="anonymous"></script>
 
-<script type="text/babel" data-presets="env,react">
-const { useState, useEffect } = React;
+  <script type="text/babel" data-presets="env,react">
+    const { useState, useEffect } = React;
 
-/* ---------- Navbar ---------- */
-function Navbar() {
-  const [open, setOpen] = useState(false);
-  const items = [
-    { label: "Core Product", href: "core-product.html" },
-    { label: "Free Tier", href: "#" },
-    { label: "Case Studies", href: "case-studies.html" },
-    { label: "About", href: "About.html" },
-  ];
-  return (
-    <div className="sticky top-0 z-50 w-full liquid-glass" style={{ borderRadius: 0 }}>
-      <div className="px-6 md:px-12 lg:px-16 py-3 flex items-center justify-between">
-        <a href="index.html" className="text-2xl font-semibold text-black shrink-0" style={{ letterSpacing: "-0.04em" }} aria-label="REcollab home">
-          REcollab
-        </a>
-        <div className="hidden md:flex items-center gap-8">
-          {items.map((item) => (
-            <a key={item.label} href={item.href} className="text-sm transition-colors" style={{ color: "#0f1c2e", fontWeight: item.label === "Core Product" ? 500 : 400 }}>
-              {item.label}
+    /* ---------- Navbar ---------- */
+    function Navbar() {
+      const [open, setOpen] = useState(false);
+      const items = [
+        { label: "Core Product", href: "core-product.html" },
+        { label: "Case Studies", href: "case-studies.html" },
+        { label: "About", href: "About.html" },
+      ];
+      return (
+        <div className="sticky top-0 z-50 w-full liquid-glass" style={{ borderRadius: 0 }}>
+          <div className="px-6 md:px-12 lg:px-16 py-3 flex items-center justify-between">
+            <a href="index.html" className="text-2xl font-semibold text-black shrink-0" style={{ letterSpacing: "-0.04em" }} aria-label="REcollab home">
+              REcollab
             </a>
-          ))}
-        </div>
-        <button className="hidden md:block bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
-          Book a Demo
-        </button>
-        <button className="md:hidden p-2 text-[#0f1c2e]" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
-          {open
-            ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          }
-        </button>
-      </div>
-      {open && (
-        <div className="md:hidden px-6 pb-5 flex flex-col" style={{ borderTop: '1px solid rgba(255,255,255,0.3)' }}>
-          {items.map((item) => (
-            <a key={item.label} href={item.href} className="text-sm text-[#0f1c2e] py-3" style={{ borderBottom: '1px solid rgba(15,28,46,0.06)' }}>
-              {item.label}
+            <div className="hidden md:flex items-center gap-8">
+              {items.map((item) => (
+                <a key={item.label} href={item.href} className="text-sm transition-colors" style={{ color: "#0f1c2e", fontWeight: item.label === "Core Product" ? 500 : 400 }}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
+            <a href="book-a-demo.html" className="hidden md:block bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
+              Book a Demo
             </a>
-          ))}
-          <button className="mt-4 w-full bg-black text-white px-6 py-3 rounded-lg text-sm font-medium">
-            Book a Demo
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* ---------- Hero ---------- */
-function Hero() {
-  return (
-    <section className="pt-32 pb-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-4">
-          Our Core Product — RECOStudy™
-        </div>
-        <h1
-          className="text-5xl md:text-6xl lg:text-7xl font-normal text-[#0f1c2e] max-w-3xl mb-6"
-          style={{ letterSpacing: "-0.04em", lineHeight: 1.05 }}
-        >
-          Powerful Financial Planning
-        </h1>
-        <p className="text-[#0f1c2e] text-base md:text-lg max-w-2xl leading-relaxed mb-10 font-light">
-          Turn your Reserve Fund Study into a live, interactive roadmap. Prevent special assessments, track compliance, and make decisions based on real data, not 100-page booklets.
-        </p>
-        <button className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
-          Book a Demo
-        </button>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Image Placeholder ---------- */
-function ProductSlider() {
-  const [slideIdx, setSlideIdx] = useState(0);
-  const TOTAL = 4;
-
-  useEffect(() => {
-    const id = setInterval(() => setSlideIdx(i => (i + 1) % TOTAL), 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  const prev = () => setSlideIdx(i => (i - 1 + TOTAL) % TOTAL);
-  const next = () => setSlideIdx(i => (i + 1) % TOTAL);
-
-  const images = [
-    'assets/image-1.png',
-    'assets/image-2.png',
-    'assets/image-3.png',
-    'assets/image-4.png',
-  ];
-
-  return (
-    <section className="px-6 pb-24">
-      <div className="max-w-6xl mx-auto">
-        <div className="relative liquid-glass rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '16/9' }}>
-          <img
-            key={slideIdx}
-            src={images[slideIdx]}
-            alt={`Product screenshot ${slideIdx + 1}`}
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top right' }}
-          />
-
-          <button onClick={prev} aria-label="Previous"
-            className="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/60 backdrop-blur border border-white/80 flex items-center justify-center hover:bg-white/90 transition-colors"
-            style={{ zIndex: 2 }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button onClick={next} aria-label="Next"
-            className="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/60 backdrop-blur border border-white/80 flex items-center justify-center hover:bg-white/90 transition-colors"
-            style={{ zIndex: 2 }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2" style={{ zIndex: 2 }}>
-            {Array.from({ length: TOTAL }).map((_, i) => (
-              <button key={i} onClick={() => setSlideIdx(i)} aria-label={`Slide ${i + 1}`}
-                style={{
-                  width: i === slideIdx ? 24 : 6, height: 6, borderRadius: 999,
-                  background: i === slideIdx ? '#0f1c2e' : 'rgba(15,28,46,0.2)',
-                  border: 'none', cursor: 'pointer', padding: 0,
-                  transition: 'width 300ms ease, background 300ms ease',
-                }} />
-            ))}
+            <button className="md:hidden p-2 text-[#0f1c2e]" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
+              {open
+                ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+              }
+            </button>
           </div>
+          {open && (
+            <div className="md:hidden px-6 pb-5 flex flex-col" style={{ borderTop: '1px solid rgba(255,255,255,0.3)' }}>
+              {items.map((item) => (
+                <a key={item.label} href={item.href} className="text-sm text-[#0f1c2e] py-3" style={{ borderBottom: '1px solid rgba(15,28,46,0.06)' }}>
+                  {item.label}
+                </a>
+              ))}
+              <a href="book-a-demo.html" className="mt-4 w-full bg-black text-white px-6 py-3 rounded-lg text-sm font-medium text-center block">
+                Book a Demo
+              </a>
+            </div>
+          )}
         </div>
-      </div>
-    </section>
-  );
-}
+      );
+    }
 
-/* ---------- Features ---------- */
-function Features() {
-  const sections = [
-    {
-      heading: "Frictionless Onboarding.",
-      body: "You don't need to organize your documents or hire an auditor to get started. Just upload what you have. Our system reads your unorganized folders to find the problems you didn't know existed. We will guide you to the next steps.",
-      items: [
-        { label: "Audit Trail", desc: "Every completed repair and inspection is logged permanently for insurance and city inspectors." },
-        { label: "Accurate Asset List", desc: "We extract inventory and costs directly from your photos and files, without a manual site inspection." },
-      ],
-    },
-    {
-      heading: "Automated Compliance. Zero Fines.",
-      body: "The system scans your bylaws and contracts to immediately flag missed deadlines, compliance breaches, and expiring warranties.",
-      items: [
-        { label: "Proactive Alerts" },
-        { label: "Regulatory Shield" },
-      ],
-    },
-    {
-      heading: "Smart Inventory Drives Your Capital Plan.",
-      body: "Stop guessing when equipment will fail. We track the Remaining Useful Life (RUL) of every asset—from boilers to hallway carpets—to predict exactly when repairs are needed.",
-      items: [
-        { label: "Data-Driven Recommendations" },
-        { label: "Custom Control" },
-        { label: "Live Asset Tracking" },
-      ],
-    },
-    {
-      heading: "One Platform, Every Stakeholder.",
-      body: "Eliminate the \"he-said, she-said\" of property management. Replace endless email chains with a single source of truth that connects everyone involved in your building's success.",
-      items: [
-        { label: "Boards & Owners" },
-        { label: "Insurers & Lenders" },
-        { label: "Contractors & Vendors" },
-      ],
-    },
-  ];
+    /* ---------- Hero ---------- */
+    function Hero() {
+      return (
+        <section className="pt-32 pb-24 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-4">
+              Our Core Product — RECOStudy™
+            </div>
+            <h1
+              className="text-5xl md:text-6xl lg:text-7xl font-normal text-[#0f1c2e] max-w-3xl mb-6"
+              style={{ letterSpacing: "-0.04em", lineHeight: 1.05 }}
+            >
+              Powerful Financial Planning
+            </h1>
+            <p className="text-[#0f1c2e] text-base md:text-lg max-w-2xl leading-relaxed mb-10 font-light">
+              Turn your Reserve Fund Study into a live, interactive roadmap. Prevent special assessments, track compliance, and make decisions based on real data, not 100-page booklets.
+            </p>
+            <button className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
+              Book a Demo
+            </button>
+          </div>
+        </section>
+      );
+    }
 
-  return (
-    <section className="px-6 pb-8">
-      <div className="max-w-6xl mx-auto">
-        {sections.map((s, i) => (
-          <div key={i} className="py-16" style={{ borderTop: '1px solid rgba(15,28,46,0.1)' }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    /* ---------- Image Placeholder ---------- */
+    function ProductSlider() {
+      const [slideIdx, setSlideIdx] = useState(0);
+      const TOTAL = 4;
 
-              {/* Left: heading + pills */}
-              <div>
-                <h2
-                  className="text-3xl md:text-4xl font-normal text-[#0f1c2e] mb-8"
-                  style={{ letterSpacing: "-0.03em", lineHeight: 1.1 }}
-                >
-                  {s.heading}
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {s.items.map((item) => (
-                    <span
-                      key={item.label}
-                      className="bg-white/60 backdrop-blur-md border border-white/80 rounded-full px-4 py-1.5 text-xs font-medium text-[#0f1c2e]"
-                    >
-                      {item.label}
-                    </span>
-                  ))}
-                </div>
+      useEffect(() => {
+        const id = setInterval(() => setSlideIdx(i => (i + 1) % TOTAL), 4000);
+        return () => clearInterval(id);
+      }, []);
+
+      const prev = () => setSlideIdx(i => (i - 1 + TOTAL) % TOTAL);
+      const next = () => setSlideIdx(i => (i + 1) % TOTAL);
+
+      const images = [
+        'assets/image1.png',
+        'assets/image2.png',
+        'assets/image3.png',
+        'assets/image4.png',
+      ];
+
+      return (
+        <section className="px-6 pb-24">
+          <div className="max-w-6xl mx-auto">
+            <div className="relative liquid-glass rounded-2xl overflow-hidden w-full" style={{ aspectRatio: '16/9' }}>
+              <img
+                key={slideIdx}
+                src={images[slideIdx]}
+                alt={`Product screenshot ${slideIdx + 1}`}
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top right' }}
+              />
+
+              <button onClick={prev} aria-label="Previous"
+                className="absolute left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/60 backdrop-blur border border-white/80 flex items-center justify-center hover:bg-white/90 transition-colors"
+                style={{ zIndex: 2 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <button onClick={next} aria-label="Next"
+                className="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/60 backdrop-blur border border-white/80 flex items-center justify-center hover:bg-white/90 transition-colors"
+                style={{ zIndex: 2 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0f1c2e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+
+              <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2" style={{ zIndex: 2 }}>
+                {Array.from({ length: TOTAL }).map((_, i) => (
+                  <button key={i} onClick={() => setSlideIdx(i)} aria-label={`Slide ${i + 1}`}
+                    style={{
+                      width: i === slideIdx ? 24 : 6, height: 6, borderRadius: 999,
+                      background: i === slideIdx ? '#0f1c2e' : 'rgba(15,28,46,0.2)',
+                      border: 'none', cursor: 'pointer', padding: 0,
+                      transition: 'width 300ms ease, background 300ms ease',
+                    }} />
+                ))}
               </div>
-
-              {/* Right: body + optional sub-descriptions */}
-              <div>
-                <p className="text-sm font-light leading-relaxed text-[#0f1c2e] mb-8">
-                  {s.body}
-                </p>
-                {s.items.some(item => item.desc) && (
-                  <div className="flex flex-col gap-6">
-                    {s.items.filter(item => item.desc).map((item) => (
-                      <div key={item.label}>
-                        <div className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#0f1c2e] mb-1.5">
-                          {item.label}
-                        </div>
-                        <p className="text-sm font-light leading-relaxed text-[#0f1c2e]">{item.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
             </div>
           </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+        </section>
+      );
+    }
 
-/* ---------- Bottom CTA ---------- */
-function BottomCTA() {
-  return (
-    <section className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2
-          className="text-4xl md:text-5xl font-normal text-[#0f1c2e] max-w-2xl mb-4"
-          style={{ letterSpacing: "-0.03em", lineHeight: 1.05 }}
-        >
-          Ready to put your building's finances on autopilot?
-        </h2>
-        <p className="text-[#0f1c2e] text-sm max-w-xl mb-8 font-light leading-relaxed">
-          Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
-        </p>
-        <div className="flex gap-4 flex-wrap">
-          <button className="bg-white text-[#0f1c2e] rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors border border-black/10">
-            Start for Free
-          </button>
-          <button className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
-            Book a Demo
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
+    /* ---------- Features ---------- */
+    function Features() {
+      const sections = [
+        {
+          heading: "Frictionless Onboarding.",
+          body: "You don't need to organize your documents or hire an auditor to get started. Just upload what you have. Our system reads your unorganized folders to find the problems you didn't know existed. We will guide you to the next steps.",
+          image: "assets/feature1.png", ratio: "954/764",
+          items: [
+            { label: "Audit Trail", desc: "Every completed repair and inspection is logged permanently for insurance and city inspectors." },
+            { label: "Accurate Asset List", desc: "We extract inventory and costs directly from your photos and files, without a manual site inspection." },
+          ],
+        },
+        {
+          heading: "Automated Compliance. Zero Fines.",
+          body: "The system scans your bylaws and contracts to immediately flag missed deadlines, compliance breaches, and expiring warranties.",
+          image: "assets/feature2.png", ratio: "952/770",
+          items: [
+            { label: "Proactive Alerts" },
+            { label: "Regulatory Shield" },
+          ],
+        },
+        {
+          heading: "Smart Inventory Drives Your Capital Plan.",
+          body: "Stop guessing when equipment will fail. We track the Remaining Useful Life (RUL) of every asset—from boilers to hallway carpets—to predict exactly when repairs are needed.",
+          image: "assets/feature3.png", ratio: "890/714",
+          items: [
+            { label: "Data-Driven Recommendations" },
+            { label: "Custom Control" },
+            { label: "Live Asset Tracking" },
+          ],
+        },
+        {
+          heading: "One Platform, Every Stakeholder.",
+          body: "Eliminate the \"he-said, she-said\" of property management. Replace endless email chains with a single source of truth that connects everyone involved in your building's success.",
+          image: "assets/feature4.png", ratio: "886/718",
+          items: [
+            { label: "Boards & Owners" },
+            { label: "Insurers & Lenders" },
+            { label: "Contractors & Vendors" },
+          ],
+        },
+      ];
 
-/* ---------- Footer ---------- */
-function Footer() {
-  const links = ["Product", "Free Tier", "Case Studies", "About", "Book a Demo"];
-  return (
-    <footer className="w-full bg-[#0f1c2e] py-8 px-6">
-      <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
-        <div className="flex items-center gap-2.5">
-          <img src="assets/recollab-logo.png" alt="REcollab" className="w-6 h-6" style={{ filter: "invert(1) brightness(2)" }} />
-          <span className="text-white font-bold text-sm">REcollab</span>
-        </div>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:flex-nowrap md:gap-8">
-          {links.map((l) => (
-            <a key={l} href={l === "About" ? "About.html" : l === "Case Studies" ? "case-studies.html" : "#"}
-              className="text-white hover:text-white transition-colors text-xs">
-              {l}
-            </a>
-          ))}
-        </div>
-        <div className="text-white text-xs">© 2025 REcollab Technologies, Inc.</div>
-      </div>
-    </footer>
-  );
-}
+      return (
+        <section className="px-6 pb-8">
+          <div className="max-w-6xl mx-auto">
+            {sections.map((s, i) => (
+              <div key={i} className="py-16" style={{ borderTop: '1px solid rgba(15,28,46,0.1)' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-function App() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <ProductSlider />
-      <Features />
-      <BottomCTA />
-      <Footer />
-    </>
-  );
-}
+                  {/* Left: heading + pills + body + sub-descriptions */}
+                  <div>
+                    <h2
+                      className="text-3xl md:text-4xl font-normal text-[#0f1c2e] mb-6"
+                      style={{ letterSpacing: "-0.03em", lineHeight: 1.1 }}
+                    >
+                      {s.heading}
+                    </h2>
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {s.items.map((item) => (
+                        <span
+                          key={item.label}
+                          className="bg-white/60 backdrop-blur-md border border-white/80 rounded-full px-4 py-1.5 text-xs font-medium text-[#0f1c2e]"
+                        >
+                          {item.label}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-sm font-light leading-relaxed text-[#0f1c2e] mb-8">
+                      {s.body}
+                    </p>
+                    {s.items.some(item => item.desc) && (
+                      <div className="flex flex-col gap-6">
+                        {s.items.filter(item => item.desc).map((item) => (
+                          <div key={item.label}>
+                            <div className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#0f1c2e] mb-1.5">
+                              {item.label}
+                            </div>
+                            <p className="text-sm font-light leading-relaxed text-[#0f1c2e]">{item.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
-</script>
+                  {/* Right: feature image */}
+                  <div
+                    className="rounded-2xl w-full overflow-hidden"
+                    style={{ aspectRatio: s.ratio, border: '1px solid #9ffa8e' }}
+                  >
+                    <img src={s.image} alt={s.heading} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    /* ---------- Bottom CTA ---------- */
+    function BottomCTA() {
+      return (
+        <section className="w-full py-12 px-6" style={{ background: '#f2f2f2', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
+          <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+            <h2
+              className="text-2xl md:text-3xl font-normal text-[#0f1c2e] mb-6 whitespace-nowrap"
+              style={{ letterSpacing: "-0.04em", lineHeight: 1.1 }}
+            >
+              Secure Your Building's Future.
+            </h2>
+            <p className="text-[#0f1c2e] text-base mb-10 max-w-lg">
+              Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
+            </p>
+            <div className="flex gap-4 flex-wrap justify-center">
+              <a href="book-a-demo.html" className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
+                Book a Demo
+              </a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ---------- Footer ---------- */
+    function Footer() {
+      const links = ["Product", "Case Studies", "About", "Book a Demo"];
+      return (
+        <footer className="w-full bg-[#0f1c2e] py-8 px-6">
+          <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
+            <div className="flex items-center gap-2.5">
+              <img src="assets/recollab-logo.png" alt="REcollab" className="w-6 h-6" style={{ filter: "invert(1) brightness(2)" }} />
+              <span className="text-white font-bold text-sm">REcollab</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:flex-nowrap md:gap-8">
+              {links.map((l) => (
+                <a key={l} href={l === "About" ? "About.html" : l === "Case Studies" ? "case-studies.html" : l === "Book a Demo" ? "book-a-demo.html" : "#"}
+                  className="text-white hover:text-white transition-colors text-xs">
+                  {l}
+                </a>
+              ))}
+            </div>
+            <div className="text-white text-xs">© 2025 REcollab Technologies, Inc.</div>
+          </div>
+        </footer>
+      );
+    }
+
+    function App() {
+      return (
+        <>
+          <Navbar />
+          <Hero />
+          <ProductSlider />
+          <Features />
+          <BottomCTA />
+          <Footer />
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
 
 </body>
+
 </html>

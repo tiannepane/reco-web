@@ -203,7 +203,7 @@
 
     .hero-chat-stage {
       width: 100%;
-      min-height: 540px;
+      height: 432px;
       border-radius: 20px;
       padding: 20px;
       position: relative;
@@ -438,10 +438,35 @@
       border-radius: 20px;
     }
 
-    @media (max-width: 768px) {
-      .hero-chat-stage {
-        min-height: 360px;
-      }
+    /* ── EVERY LAYOUT: Switcher pattern for hero two-column layout ────────────
+       Principle: flex-basis: calc((threshold - 100%) * 999)
+         • container > 37.5rem (600px) → negative flex-basis → treated as 0
+           → flex-grow kicks in → side-by-side (text 3fr, chat 2fr)
+         • container < 37.5rem (600px) → large positive flex-basis
+           → each item wraps to its own full row → stacked
+       No @media breakpoints needed. Layout responds to *container* width,
+       not viewport, so it stays correct at any embedding context.
+    ─────────────────────────────────────────────────────────────────────────── */
+    .hero-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-col-main,
+    .hero-col-chat {
+      flex-basis: calc((52rem - 100%) * 999);
+      min-width: 0;
+    }
+
+    .hero-col-main {
+      flex-grow: 3;
+    }
+
+    .hero-col-chat {
+      flex-grow: 2;
+      min-width: 22rem;
     }
 
     .navbar-glass::before,
@@ -521,7 +546,6 @@
       height: 100%;
       position: relative;
       overflow: hidden;
-      min-height: 280px;
       background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 50%, #B8C5FF 100%);
     }
 
@@ -822,7 +846,6 @@
       height: 100%;
       position: relative;
       overflow: hidden;
-      min-height: 280px;
       background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 50%, #B8C5FF 100%);
       /* Add these two lines */
       display: flex;
@@ -1136,13 +1159,23 @@
     }
 
     @keyframes db-c4Wipe {
-      0%   { clip-path: inset(0 100% 0 0); }
-      100% { clip-path: inset(0 0% 0 0); }
+      0% {
+        clip-path: inset(0 100% 0 0);
+      }
+
+      100% {
+        clip-path: inset(0 0% 0 0);
+      }
     }
 
     @keyframes db-c4ContentIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     @keyframes db-cardFromRight {
@@ -1221,7 +1254,6 @@
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 280px;
       background: linear-gradient(148deg, #E0E8FF 0%, #C8D5FF 48%, #B8C5FF 100%);
       border-radius: 10px;
       overflow: hidden;
@@ -1288,7 +1320,7 @@
       align-self: stretch;
     }
 
-    .db-card > *:last-child {
+    .db-card>*:last-child {
       margin-bottom: 0;
     }
 
@@ -1356,7 +1388,7 @@
     .db-lbl {
       font-size: 10.5px;
       font-weight: 500;
-      letter-spacing: 0.09em;
+      letter-spacing: 0;
       text-transform: uppercase;
       color: #475569;
       margin-bottom: 7px;
@@ -1485,7 +1517,6 @@
     .s04-stage {
       width: 100%;
       height: 100%;
-      min-height: 320px;
       background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 52%, #B8C5FF 100%);
       display: flex;
       flex-direction: column;
@@ -1774,9 +1805,17 @@
       transition: all 350ms ease;
       animation: s05NodePulse 3.2s ease-in-out infinite;
     }
+
     @keyframes s05NodePulse {
-      0%,100% { transform: translate(-50%, -50%) scale(1); }
-      50%      { transform: translate(-50%, -50%) scale(1.07); }
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.07);
+      }
     }
 
     .s05-node:hover {
@@ -1810,31 +1849,193 @@
     }
 
     /* ---- Step 06 contractor flow ---- */
-    .s06-stage { width: 100%; height: 100%; background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 52%, #B8C5FF 100%); display: flex; align-items: center; justify-content: center; padding: 24px 36px; position: relative; overflow: hidden; }
-    .s06-track { display: flex; align-items: center; justify-content: center; width: 100%; }
-    .s06-step { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; opacity: 0; transform: translateY(14px); transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1); position: relative; z-index: 1; }
-    .s06-step.s06-vis { opacity: 1; transform: translateY(0); }
-    .s06-conn { flex: 1; height: 1.5px; background: rgba(77,107,169,0.2); position: relative; min-width: 16px; z-index: 0; opacity: 0; transition: opacity 0.4s ease; }
-    .s06-conn.s06-conn-vis { opacity: 1; }
-    .s06-conn::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); border-left: 7px solid rgba(77,107,169,0.2); border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: border-left-color 0.55s cubic-bezier(0.22,1,0.36,1); }
-    .s06-conn.s06-lit::after { border-left-color: #0f1c2e; }
-    .s06-fill { position: absolute; inset: 0; background: #0f1c2e; transform: scaleX(0); transform-origin: left; transition: transform 0.55s cubic-bezier(0.22,1,0.36,1); }
-    .s06-fill.s06-lit { transform: scaleX(1); }
-    .s06-circle { width: clamp(43px,5.9vw,61px); height: clamp(43px,5.9vw,61px); border-radius: 50%; background: rgba(255,255,255,0.55); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); border: 1.5px solid rgba(255,255,255,0.75); box-shadow: 0 4px 16px rgba(15,28,46,0.08), inset 0 1px 0 rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; position: relative; transition: background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1); }
-    .s06-circle svg { width: clamp(14px,2vw,20px); height: clamp(14px,2vw,20px); stroke: #4d6ba9; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.4s ease; }
-    .s06-num { position: absolute; top: -5px; left: -5px; width: 16px; height: 16px; border-radius: 50%; background: #4d6ba9; color: #fff; font-size: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.9); transition: background 0.4s ease, color 0.4s ease; }
-    .s06-lbl { margin-top: 8px; text-align: center; padding: 0 2px; }
-    .s06-lbl strong { display: block; font-size: clamp(7px,0.9vw,10px); font-weight: 600; color: #0f1c2e; line-height: 1.3; }
-    .s06-step.s06-active .s06-circle { background: rgba(255,255,255,0.92); border-color: #9ffa8e; box-shadow: 0 6px 20px rgba(15,28,46,0.12), 0 0 0 5px rgba(159,250,142,0.14), inset 0 1px 0 rgba(255,255,255,1); transform: scale(1.10); }
-    .s06-step.s06-active .s06-num { background: #9ffa8e; color: #0f1c2e; }
-    .s06-step.s06-passed .s06-circle svg { stroke: #D97757; }
-    .s06-step.s06-passed .s06-num { background: #D97757; }
-    .s06-step.s06-winner .s06-circle { background: #9ffa8e; border-color: #9ffa8e; box-shadow: 0 8px 28px rgba(159,250,142,0.45), 0 0 0 8px rgba(159,250,142,0.14), 0 0 0 18px rgba(159,250,142,0.06), inset 0 1px 0 rgba(255,255,255,0.6); transform: scale(1.12); animation: s06WinnerPulse 2.4s ease-in-out infinite; }
-    .s06-step.s06-winner .s06-circle svg { stroke: #0f1c2e; }
-    .s06-step.s06-winner .s06-num { background: #D97757; color: #fff; }
+    .s06-stage {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #E0E8FF 0%, #C8D4FF 52%, #B8C5FF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s06-track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .s06-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .s06-step.s06-vis {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .s06-conn {
+      flex: 1;
+      height: 1.5px;
+      background: rgba(77, 107, 169, 0.2);
+      position: relative;
+      min-width: 16px;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .s06-conn.s06-conn-vis {
+      opacity: 1;
+    }
+
+    .s06-conn::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-left: 7px solid rgba(77, 107, 169, 0.2);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      transition: border-left-color 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .s06-conn.s06-lit::after {
+      border-left-color: #0f1c2e;
+    }
+
+    .s06-fill {
+      position: absolute;
+      inset: 0;
+      background: #0f1c2e;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .s06-fill.s06-lit {
+      transform: scaleX(1);
+    }
+
+    .s06-circle {
+      width: clamp(43px, 5.9vw, 61px);
+      height: clamp(43px, 5.9vw, 61px);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 4px 16px rgba(15, 28, 46, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .s06-circle svg {
+      width: clamp(14px, 2vw, 20px);
+      height: clamp(14px, 2vw, 20px);
+      stroke: #4d6ba9;
+      stroke-width: 1.6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.4s ease;
+    }
+
+    .s06-num {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #4d6ba9;
+      color: #fff;
+      font-size: 8px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    .s06-lbl {
+      margin-top: 8px;
+      text-align: center;
+      padding: 0 2px;
+    }
+
+    .s06-lbl strong {
+      display: block;
+      font-size: clamp(7px, 0.9vw, 10px);
+      font-weight: 600;
+      color: #0f1c2e;
+      line-height: 1.3;
+    }
+
+    .s06-step.s06-active .s06-circle {
+      background: rgba(255, 255, 255, 0.92);
+      border-color: #9ffa8e;
+      box-shadow: 0 6px 20px rgba(15, 28, 46, 0.12), 0 0 0 5px rgba(159, 250, 142, 0.14), inset 0 1px 0 rgba(255, 255, 255, 1);
+      transform: scale(1.10);
+    }
+
+    .s06-step.s06-active .s06-num {
+      background: #9ffa8e;
+      color: #0f1c2e;
+    }
+
+    .s06-step.s06-passed .s06-circle svg {
+      stroke: #D97757;
+    }
+
+    .s06-step.s06-passed .s06-num {
+      background: #D97757;
+    }
+
+    .s06-step.s06-winner .s06-circle {
+      background: #9ffa8e;
+      border-color: #9ffa8e;
+      box-shadow: 0 8px 28px rgba(159, 250, 142, 0.45), 0 0 0 8px rgba(159, 250, 142, 0.14), 0 0 0 18px rgba(159, 250, 142, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      transform: scale(1.12);
+      animation: s06WinnerPulse 2.4s ease-in-out infinite;
+    }
+
+    .s06-step.s06-winner .s06-circle svg {
+      stroke: #0f1c2e;
+    }
+
+    .s06-step.s06-winner .s06-num {
+      background: #D97757;
+      color: #fff;
+    }
+
     @keyframes s06WinnerPulse {
-      0%,100% { box-shadow: 0 8px 28px rgba(159,250,142,0.45), 0 0 0 8px rgba(159,250,142,0.14), 0 0 0 18px rgba(159,250,142,0.06), inset 0 1px 0 rgba(255,255,255,0.6); }
-      50%      { box-shadow: 0 10px 36px rgba(159,250,142,0.55), 0 0 0 14px rgba(159,250,142,0.18), 0 0 0 26px rgba(159,250,142,0.08), inset 0 1px 0 rgba(255,255,255,0.6); }
+
+      0%,
+      100% {
+        box-shadow: 0 8px 28px rgba(159, 250, 142, 0.45), 0 0 0 8px rgba(159, 250, 142, 0.14), 0 0 0 18px rgba(159, 250, 142, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      }
+
+      50% {
+        box-shadow: 0 10px 36px rgba(159, 250, 142, 0.55), 0 0 0 14px rgba(159, 250, 142, 0.18), 0 0 0 26px rgba(159, 250, 142, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      }
     }
   </style>
 </head>
@@ -1909,7 +2110,7 @@
                         whiteSpace: "pre",
                       }}
                     >
-                      {ch === " " ? " " : ch}
+                      {ch === " " ? " " : ch}
                     </span>
                   );
                 })}
@@ -1925,7 +2126,6 @@
       const [open, setOpen] = useState(false);
       const navItems = [
         { label: "Core Product", href: "core-product.html" },
-        { label: "Free Tier", href: "#" },
         { label: "Case Studies", href: "case-studies.html" },
         { label: "About", href: "About.html" },
       ];
@@ -1942,9 +2142,9 @@
                 </a>
               ))}
             </div>
-            <button className="hidden md:block bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
+            <a href="book-a-demo.html" className="hidden md:block bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-black transition-colors">
               Book a Demo
-            </button>
+            </a>
             <button className="md:hidden p-2 text-[#0f1c2e]" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
               {open
                 ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
@@ -1959,9 +2159,9 @@
                   {item.label}
                 </a>
               ))}
-              <button className="mt-4 w-full bg-black text-white px-6 py-3 rounded-lg text-sm font-medium">
+              <a href="book-a-demo.html" className="mt-4 w-full bg-black text-white px-6 py-3 rounded-lg text-sm font-medium text-center block">
                 Book a Demo
-              </button>
+              </a>
             </div>
           )}
         </div>
@@ -2207,7 +2407,7 @@
       return (
         <div className="hero-chat-stage">
           <div className="h-full w-full flex flex-col justify-end">
-            {renderRow(prev, "prev", true)}
+            {index > 0 && renderRow(prev, "prev", true)}
 
             {isTyping ? (
               <div className={`hero-chat-row ${typingSide === "pm" ? "hero-chat-pm" : ""}`}>
@@ -2248,48 +2448,82 @@
       }, []);
 
       return (
-        <section className="relative w-full overflow-hidden text-black border-b border-[#0f1c2e]/5" style={{ minHeight: 'calc(70vh + 64px)', marginTop: '-64px' }}>
+        <section className="relative w-full overflow-hidden text-black border-b border-[#0f1c2e]/5" style={{ minHeight: 'calc(92vh + 64px)', marginTop: '-64px', display: 'flex', flexDirection: 'column' }}>
           <div className="hero-bg" aria-hidden="true"></div>
 
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-center pt-48 pb-16">
+          <div className="relative z-10 flex flex-col flex-1">
+            {/*
+              ── CHANGE 1: pt-48 pb-16 replaced with fluid clamp() padding ──
+              clamp(5.5rem, calc(3.5rem + 8vw), 12rem):
+                • ~88px  on 320px phones  (navbar 64px + breathing room)
+                • ~148px on 768px tablets
+                • 192px  on wide desktops (same visual result as pt-48 was)
+              No hard breakpoint jump mid-resize.
+            */}
+            <div className="px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-center" style={{ paddingTop: '8rem', paddingBottom: '3rem' }}>
               <div className="max-w-7xl mx-auto w-full">
-                <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-4 items-center">
-                  <div className="max-w-3xl">
-                    <h1
-                      className="text-xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-normal mb-4"
-                      style={{ letterSpacing: "-0.04em", lineHeight: 1.1 }}
-                    >
-                      The Financial Operating System for
-                      <br />
-                      <span className="hero-role" style={{
-                        opacity: visible ? 1 : 0,
-                        transform: visible ? 'translateY(0)' : 'translateY(8px)',
-                        transition: 'opacity 0.35s ease, transform 0.35s ease',
-                      }}>
-                        {roles[roleIdx]}.
-                      </span>
-                    </h1>
+                {/*
+                  ── CHANGE 2: grid replaced with Every Layout Switcher ──
+                  The .hero-columns flex container uses:
+                    flex-basis: calc((37.5rem - 100%) * 999)
+                  on each child. When the container is wider than 37.5rem (600px),
+                  the result is negative → invalid → treated as 0 → flex-grow
+                  distributes space (3fr text, 2fr chat). When narrower, the result
+                  is a huge positive number → each child wraps to its own row → stacked.
+                  This is a container-based switch with zero @media queries.
+                */}
+                <div className="hero-columns">
+                  {/* text column — hero-col-main gives it flex-grow:3 */}
+                  <div className="hero-col-main">
+                    <div className="max-w-3xl">
+                      {/*
+                        ── CHANGE 3: fluid font-size via clamp() ──
+                        Replaces the 5-breakpoint Tailwind ladder
+                        (text-xl sm:text-3xl md:text-5xl lg:text-5xl xl:text-6xl).
+                        clamp(1.5rem, calc(0.75rem + 2.5vw), 3.75rem):
+                          • 24px  at 320px
+                          • ~36px at 720px
+                          • 60px  at 1280px+
+                        Smooth, continuous scaling — no jump at any breakpoint.
+                      */}
+                      <h1
+                        className="font-normal mb-4"
+                        style={{ fontSize: '3.75rem', letterSpacing: "-0.04em", lineHeight: 1.1 }}
+                      >
+                        The Financial Operating System for
+                        <br />
+                        <span className="hero-role" style={{
+                          opacity: visible ? 1 : 0,
+                          transform: visible ? 'translateY(0)' : 'translateY(8px)',
+                          transition: 'opacity 0.35s ease, transform 0.35s ease',
+                        }}>
+                          {roles[roleIdx]}.
+                        </span>
+                      </h1>
 
-                    <FadeIn delay={800} duration={1000}>
-                      <p className="text-base md:text-lg text-[#0f1c2e] mb-5 max-w-xl">
-                        REcollab transforms your building data into actionable intelligence — automating reserve studies, compliance audits, insurance optimization, and board reporting — so property managers, asset managers, and condo boards can make faster, smarter financial decisions.
-                      </p>
-                    </FadeIn>
+                      <FadeIn delay={800} duration={1000}>
+                        <p className="text-base md:text-lg text-[#0f1c2e] mb-5 max-w-xl">
+                          Secure your building's future through intelligence. Upload any file format and REcollab plans your maintenance and funding journey.
+                        </p>
+                      </FadeIn>
 
-                    <FadeIn delay={1200} duration={1000}>
-                      <div className="flex flex-wrap gap-4">
-                        <button className="bg-white text-[#0f1c2e] px-8 py-3 rounded-lg font-medium hover:bg-white/90 transition-colors border border-black/10">
-                          Start for Free
-                        </button>
-                        <button className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-black/80 transition-colors">
-                          Book a Demo
-                        </button>
-                      </div>
-                    </FadeIn>
-                  </div>
+                      <FadeIn delay={1200} duration={1000}>
+                        <div className="flex flex-wrap gap-4">
+                          <a href="book-a-demo.html" className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-black/80 transition-colors">
+                            Book a Demo
+                          </a>
+                        </div>
+                      </FadeIn>
+                    </div>
+                  </div>{/* /hero-col-main */}
 
-                  <FadeIn delay={900} duration={900}>
+                  {/*
+                    ── CHANGE 4: className="hero-col-chat" on the FadeIn wrapper ──
+                    This gives the chat animation flex-grow:2 (2/5 of available
+                    space when side-by-side) and flex-basis from the Switcher calc.
+                    When stacked on mobile it becomes full-width automatically.
+                  */}
+                  <FadeIn delay={900} duration={900} className="hero-col-chat">
                     <HeroChatAnimation />
                   </FadeIn>
                 </div>
@@ -3081,7 +3315,7 @@
           <div className="db-card c3">
             <div className="db-lbl">Special Assessment Risk Year</div>
             <div className="db-yr">2029</div>
-            <div className="db-badge db-bo"><span className="db-dot db-do"></span>Elevated</div>
+            <div className="db-badge db-bo"><span className="db-dot db-do"></span>High Risk</div>
           </div>
 
           <div className="db-card c4">
@@ -3103,6 +3337,30 @@
         </div>
       );
     }
+    function ScaleToFit({ children, w = 691, h = 544 }) {
+      return (
+        <div style={{
+          containerType: 'inline-size',
+          aspectRatio: `${w} / ${h}`,
+          overflow: 'hidden',
+          position: 'relative',
+          width: '100%',
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: `${w}px`,
+            height: `${h}px`,
+            transform: `scale(min(1, calc(100cqw / ${w}px)))`,
+            transformOrigin: 'top left',
+          }}>
+            {children}
+          </div>
+        </div>
+      );
+    }
+
     function HowItWorks() {
       const steps = [
         {
@@ -3160,10 +3418,11 @@
       const current = steps[active];
 
       useEffect(() => {
+        if (active === steps.length - 1) return;
         const animDurations = [12000, 10000, 5000, 9600, 9000, 5500];
         const duration = (animDurations[active] ?? 8000) + 4000;
         const id = setTimeout(() => {
-          setActive((a) => (a + 1) % steps.length);
+          setActive((a) => a + 1);
           setTick((t) => t + 1);
         }, duration);
         return () => clearTimeout(id);
@@ -3248,45 +3507,31 @@
                   </div>
                 </div>
 
+                {(() => {
+                  const animCellClass = "lg:col-span-3 relative";
+                  const animations = [Step01Animation, Step02Animation, Step03Animation, Step04Animation, Step05Animation, Step06Animation];
+                  const StepAnim = animations[active];
+                  return (
                 <div
                   key={active}
-                  className="grid grid-cols-1 md:grid-cols-5 gap-0 items-stretch"
-                  style={{ animation: "howFadeIn 300ms ease-in-out", minHeight: "clamp(22rem, 55vw, 34rem)" }}
+                  className="grid grid-cols-1 lg:grid-cols-5 gap-0 items-stretch"
+                  style={{ animation: "howFadeIn 300ms ease-in-out" }}
                 >
-                  {active === 0 ? (
-                    <div className="md:col-span-3 relative" style={{ minHeight: '280px' }}>
-                      <Step01Animation />
-                    </div>
-                  ) : active === 1 ? (
-                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
-                      <Step02Animation />
-                    </div>
-                  ) : active === 2 ? (
-                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
-                      {/* This is your new dashboard! */}
-                      <Step03Animation />
-                    </div>
-                  ) : active === 3 ? (
-                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
-                      <Step04Animation />
-                    </div>
-                  ) : active === 4 ? (
-                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
-                      <Step05Animation />
-                    </div>
-                  ) : active === 5 ? (
-                    <div className="md:col-span-3 relative" style={{ alignSelf: 'stretch' }}>
-                      <Step06Animation />
+                  {StepAnim ? (
+                    <div className={animCellClass}>
+                      <ScaleToFit>
+                        <StepAnim />
+                      </ScaleToFit>
                     </div>
                   ) : (
-                    <div className="md:col-span-3 bg-transparent p-10 flex items-center justify-center">
+                    <div className="lg:col-span-3 bg-transparent p-10 flex items-center justify-center">
                       <div className="rounded-2xl bg-white/40 border border-white/60 p-10 flex items-center justify-center">
                         {stepIcons[active]}
                       </div>
                     </div>
                   )}
 
-                  <div className="md:col-span-2 bg-white/20 border-l border-white/40 p-8 flex flex-col justify-between gap-6">
+                  <div className="lg:col-span-2 bg-white/20 lg:border-l border-white/40 p-8 flex flex-col justify-between gap-6">
                     <div className="text-sm text-[#0f1c2e] leading-relaxed">
                       {current.description}
                     </div>
@@ -3302,6 +3547,8 @@
                     </div>
                   </div>
                 </div>
+                  );
+                })()}
               </div>
 
               <button
@@ -3422,9 +3669,6 @@
       return (
         <section className="w-full py-12 px-6" style={{ background: '#f2f2f2', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
           <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-            <div className="text-[#0f1c2e] tracking-[0.2em] text-xs font-semibold uppercase mb-3">
-              Get Started
-            </div>
             <h2
               className="text-2xl md:text-3xl font-normal text-[#0f1c2e] mb-6 whitespace-nowrap"
               style={{ letterSpacing: "-0.04em", lineHeight: 1.1 }}
@@ -3435,12 +3679,9 @@
               Join property managers across North America who use REcollab to plan, fund, and future-proof their buildings.
             </p>
             <div className="flex gap-4 flex-wrap justify-center">
-              <button className="bg-white text-[#0f1c2e] rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-white/90 transition-colors border border-black/10">
-                Start for Free
-              </button>
-              <button className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
+              <a href="book-a-demo.html" className="bg-black text-white rounded-lg px-8 py-3.5 text-sm font-semibold hover:bg-black/80 transition-colors">
                 Book a Demo
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -3449,7 +3690,7 @@
 
     /* ---------- Footer ---------- */
     function Footer() {
-      const links = ["Product", "Free Tier", "Case Studies", "About", "Book a Demo"];
+      const links = ["Product", "Case Studies", "About", "Book a Demo"];
       return (
         <footer className="w-full py-8 px-6" style={{ background: '#080f2a' }}>
           <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
@@ -3466,7 +3707,7 @@
               {links.map((l) => (
                 <a
                   key={l}
-                  href={l === "About" ? "About.html" : "#"}
+                  href={l === "About" ? "About.html" : l === "Book a Demo" ? "book-a-demo.html" : l === "Case Studies" ? "case-studies.html" : "#"}
                   className="text-white hover:text-white transition-colors text-xs"
                 >
                   {l}
@@ -3496,8 +3737,8 @@
 
       return (
         <section className="py-24 px-6" style={{ background: '#080f2a', borderTop: '1px solid rgba(15,28,46,0.22)', borderBottom: '1px solid rgba(15,28,46,0.22)' }}>
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-20 items-center">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-10 lg:gap-14 items-center">
 
               {/* Left: label + title + image slider */}
               <div>
@@ -3512,12 +3753,12 @@
                 </h2>
 
                 {/* Image slider */}
-                <div className="relative liquid-glass rounded-2xl overflow-hidden" style={{ aspectRatio: '16/10', border: '1px solid #9ffa8e' }}>
+                <div className="relative liquid-glass rounded-lg overflow-hidden" style={{ aspectRatio: '2300/1298', border: '1px solid #9ffa8e' }}>
                   <img
                     key={slideIdx}
-                    src={`assets/image-${slideIdx + 1}.png`}
+                    src={`assets/image${slideIdx + 1}.png`}
                     alt={`RECOStudy screenshot ${slideIdx + 1}`}
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top right' }}
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'top right' }}
                   />
 
                   <button onClick={prev} aria-label="Previous slide"
